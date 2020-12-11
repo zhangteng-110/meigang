@@ -8,4 +8,6 @@ import com.beautifulharborbackstage.pojo.dto.UserDTO;
  */
 public interface userServiceImpl {
     public UserDTO login(UserDTO userDTO);
+
+    public void register(UserDTO userDTO);
 }

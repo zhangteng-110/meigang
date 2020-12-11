@@ -23,4 +23,9 @@ public class UserService implements userServiceImpl {
         }
         return null;
     }
+
+    @Override
+    public void register(UserDTO userDTO) {
+        userMapper.register(userDTO);
+    }
 }

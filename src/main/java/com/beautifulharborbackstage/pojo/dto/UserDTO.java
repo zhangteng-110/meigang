@@ -3,6 +3,8 @@ package com.beautifulharborbackstage.pojo.dto;
 import com.beautifulharborbackstage.pojo.po.UserSexEnum;
 import lombok.*;
 
+import java.io.Serializable;
+
 /**
  * @author zhangteng
  * @date: Created in 9:23 2020/12/4
@@ -10,7 +12,7 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
+public class UserDTO implements Serializable {
     private int userId;
     private String username;
     private String password;

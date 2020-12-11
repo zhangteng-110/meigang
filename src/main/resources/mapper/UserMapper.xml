@@ -30,15 +30,15 @@
 <!--        WHERE id = #{id}-->
 <!--    </select>-->
 
-<!--    <insert id="insert" parameterType="com.neo.entity.UserEntity" >
+   <insert id="register" parameterType="com.beautifulharborbackstage.pojo.dto.UserDTO" >
         INSERT INTO
-            users
-            (userName,passWord,user_sex)
+            user
+            (username,password,userSex,realName,userCode)
         VALUES
-            (#{userName}, #{passWord}, #{userSex})
+            (#{username}, #{password}, #{userSex},#{realName},#{userCode})
     </insert>
 
-    <update id="update" parameterType="com.neo.entity.UserEntity" >
+<!--    <update id="update" parameterType="com.neo.entity.UserEntity" >
         UPDATE
         users
         SET

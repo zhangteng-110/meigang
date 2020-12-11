@@ -19,4 +19,6 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);*/
     UserDTO login(UserDTO userDTO);
+
+    void register(UserDTO userDTO);
 }
