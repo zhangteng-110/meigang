@@ -1,8 +1,11 @@
 package com.beautifulharborbackstage.dao.mapper;
 
 import com.beautifulharborbackstage.pojo.dto.UserDTO;
+import com.beautifulharborbackstage.pojo.po.UserPO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Mapper
 @Repository
@@ -21,4 +24,8 @@ public interface UserMapper {
     UserDTO login(UserDTO userDTO);
 
     void register(UserDTO userDTO);
+
+    List<UserPO> selectAllVip(UserDTO userDTO);
+
+    void registerDetails(UserDTO userDTO);
 }

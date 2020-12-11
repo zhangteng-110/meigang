@@ -4,38 +4,70 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.beautifulharborbackstage.dao.mapper.UserMapper" >
-    <resultMap id="BaseResultMap" type="com.beautifulharborbackstage.pojo.dto.UserDTO" >
+    <resultMap id="UserDTO" type="com.beautifulharborbackstage.pojo.dto.UserDTO" >
         <id column="userId" property="userId" jdbcType="BIGINT" />
         <result column="username" property="username" jdbcType="VARCHAR" />
         <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="userCode" property="userCode" jdbcType="VARCHAR" />
+        <result column="startDate" property="startDate" jdbcType="DATE" />
+        <result column="endDate" property="endDate" jdbcType="DATE" />
+    </resultMap>
+    <resultMap id="UserPo" type="com.beautifulharborbackstage.pojo.po.UserPO" >
+        <id column="userId" property="userId" jdbcType="BIGINT" />
         <result column="userSex" property="userSex" javaType="com.beautifulharborbackstage.pojo.po.UserSexEnum"/>
-        <result column="realName" property="realName" jdbcType="VARCHAR" />
+        <result column="realName" property="realName" jdbcType="VARCHAR"/>
+        <result column="userCode" property="userCode" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="phone" property="phone" jdbcType="VARCHAR" />
+        <result column="startDate" property="startDate" jdbcType="DATE" />
+        <result column="endDate" property="endDate" jdbcType="DATE" />
+        <result column="isVip" property="isVip" jdbcType="TINYINT" />
+        <result column="integral" property="integral" jdbcType="TINYINT" />
+        <result column="money" property="money" jdbcType="BIGINT" />
     </resultMap>
 
-    <sql id="Base_Column_List" >
-        userId , username, password, userSex, realName,userCode
+    <sql id="UserDTO_List" >
+        userId , username, password,userCode
+    </sql>
+    <sql id="UserPo_List" >
+        userId , userSex, user.userCode userCode, email, phone, realName, startDate, endDate,isVip ,integral,money
     </sql>
 
-    <select id="login" resultMap="BaseResultMap"  parameterType="com.beautifulharborbackstage.pojo.dto.UserDTO">
+    <select id="login" resultMap="UserDTO"  parameterType="com.beautifulharborbackstage.pojo.dto.UserDTO">
         SELECT
-        <include refid="Base_Column_List" />
+        <include refid="UserDTO_List" />
         FROM user
-        where username = #{username} and password = #{password}
+        where 1 = 1 and username = #{username} and password = #{password}
     </select>
 
-<!--    <select id="getOne" parameterType="java.lang.Long" resultMap="BaseResultMap" >-->
-<!--        SELECT-->
-<!--        <include refid="Base_Column_List" />-->
-<!--        FROM users-->
-<!--        WHERE id = #{id}-->
-<!--    </select>-->
+    <select id="selectAllVip" parameterType="com.beautifulharborbackstage.pojo.dto.UserDTO" resultMap="UserPo">
+        SELECT
+        <include refid="UserPo_List" />
+        FROM user LEFT JOIN user_details ud on user.userCode = ud.userCode
+        <where>
+            1 = 1
+            <if test="realName != null and realName != ''">
+                and ud.realName like CONCAT('%',#{realName},'%')
+            </if>
+            <if test="startDate != null and endDate != null">
+                and #{startDate} &gt;= ud.startDate and ud.endDate &lt;= #{endDate}
+            </if>
+        </where>
+    </select>
 
    <insert id="register" parameterType="com.beautifulharborbackstage.pojo.dto.UserDTO" >
         INSERT INTO
             user
-            (username,password,userSex,realName,userCode)
+            (username,password,userCode)
         VALUES
-            (#{username}, #{password}, #{userSex},#{realName},#{userCode})
+            (#{username}, #{password},#{userCode})
+    </insert>
+   <insert id="registerDetails" parameterType="com.beautifulharborbackstage.pojo.dto.UserDTO" >
+        INSERT INTO
+            user_details
+            (userSex, email, phone, realName, startDate, endDate,userCode)
+        VALUES
+            (#{userSex}, #{email},#{phone},#{realName},#{startDate},#{endDate},#{userCode})
     </insert>
 
 <!--    <update id="update" parameterType="com.neo.entity.UserEntity" >

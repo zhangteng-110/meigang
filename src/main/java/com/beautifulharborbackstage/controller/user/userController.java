@@ -1,6 +1,7 @@
 package com.beautifulharborbackstage.controller.user;
 
 import com.beautifulharborbackstage.pojo.dto.UserDTO;
+import com.beautifulharborbackstage.pojo.po.UserPO;
 import com.beautifulharborbackstage.service.impl.userServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -8,6 +9,8 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author zhangteng
@@ -21,17 +24,13 @@ public class userController {
     @Autowired
     private userServiceImpl userServiceImpl;
 
-    @PostMapping("/login")
+
     @ApiOperation("登录")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "username",value = "用户名",required = true,paramType = "String"),
-            @ApiImplicitParam(name = "password",value = "密码",required = true,paramType = "String")
+            @ApiImplicitParam(name = "userDTO",value = "传输dto",required = true,paramType = "body")
     })
-    public UserDTO  login(@RequestParam(value = "username",required = true) String username,
-                       @RequestParam(value = "password",required = true ) String password){
-        UserDTO userDTO = new UserDTO();
-        userDTO.setUsername(username);
-        userDTO.setPassword(password);
+    @PostMapping("/login")
+    public UserDTO  login(@RequestBody UserDTO userDTO){
         return userServiceImpl.login(userDTO);
     }
     @ApiOperation("注册")
@@ -41,6 +40,14 @@ public class userController {
     @PostMapping("/register")
     public void  register(@RequestBody UserDTO userDTO){
         userServiceImpl.register(userDTO);
+    }
+    @ApiOperation("查询所有会员")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userDTO",value = "传输dto",required = true,paramType = "body")
+    })
+    @PostMapping("/selectAllVip")
+    public List<UserPO> selectAllVip(@RequestBody UserDTO userDTO){
+        return userServiceImpl.selectAllVip(userDTO);
     }
 
 }
