@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.beautifulharborbackstage.dao.mapper.StaffMapper" >
+    <resultMap id="StaffReturnResultDTO" type="com.beautifulharborbackstage.pojo.dto.StaffReturnResultDTO" >
+        <id column="staffId" property="staffId" jdbcType="BIGINT" />
+        <result column="accountNumber" property="accountNumber" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="staffCode" property="staffCode" jdbcType="VARCHAR" />
+        <result column="staffName" property="staffName" jdbcType="VARCHAR" />
+        <result column="phone" property="phone" jdbcType="VARCHAR" />
+        <result column="startDate" property="startDate" jdbcType="DATE" />
+        <result column="endDate" property="endDate" jdbcType="DATE" />
+        <result column="staffSex" property="staffSex" javaType="com.beautifulharborbackstage.pojo.po.UserSexEnum"/>
+        <result column="salary" property="salary" jdbcType="BIGINT" />
+        <result column="staffPositionId" property="staffPositionId" jdbcType="BIGINT" />
+    </resultMap>
+
+    <sql id="StaffDTO_List" >
+        staffId , accountNumber, password , staffCode ,staffName,staffSex,phone,startDate,endDate,salary
+    </sql>
+
+    <select id="getStaffNumber" resultType="java.lang.Integer">
+        SELECT
+        count(staffId)
+        FROM staff
+    </select>
+
+    <select id="login" resultMap="StaffReturnResultDTO"  parameterType="com.beautifulharborbackstage.pojo.dto.StaffDTO">
+        SELECT
+        <include refid="StaffDTO_List" />
+        FROM staff
+        where 1 = 1 and accountNumber = #{accountNumber} and password = #{password} and staffPositionId in ('1')
+    </select>
+
+    <select id="selectAllStaff" parameterType="com.beautifulharborbackstage.pojo.dto.UserDTO" resultMap="StaffReturnResultDTO">
+        SELECT
+        <include refid="StaffDTO_List" />
+        FROM staff
+        <where>
+            1 = 1
+            <if test="staffName != null and staffName != ''">
+                and staffName like CONCAT('%',#{staffName},'%')
+            </if>
+            and staffPositionId not in ('1')
+        </where>
+    </select>
+
+    <delete id="deleteStaffById" parameterType="java.lang.Integer" >
+        DELETE FROM staff
+        <where>
+            1=1
+            <if test="staffId != null">
+                and staffId = #{staffId}
+            </if>
+        </where>
+    </delete>
+    <insert id="staffRegister" parameterType="com.beautifulharborbackstage.pojo.dto.StaffDTO" >
+        INSERT INTO
+            staff
+            (staffSex, phone, staffName, startDate, staffCode ,salary)
+        VALUES
+            (#{staffSex},#{phone},#{staffName},#{startDate},#{staffCode},#{salary})
+    </insert>
+<!--   <insert id="register" parameterType="com.beautifulharborbackstage.pojo.dto.UserDTO" >-->
+<!--        INSERT INTO-->
+<!--            user-->
+<!--            (username,password,userCode)-->
+<!--        VALUES-->
+<!--            (#{username}, #{password},#{userCode})-->
+<!--    </insert>-->
+
+<!--    <update id="consumptionChange" parameterType="com.beautifulharborbackstage.pojo.po.UserPO" >-->
+<!--        UPDATE-->
+<!--        user_details-->
+<!--        SET-->
+<!--        <if test="money != null">-->
+<!--            money = #{money},-->
+<!--        </if>-->
+<!--        <if test="integral != null">-->
+<!--            integral = #{integral}-->
+<!--        </if>-->
+<!--        <where>-->
+<!--            userCode = #{userCode}-->
+<!--        </where>-->
+<!--    </update>-->
+<!--    <update id="vipChange" parameterType="com.beautifulharborbackstage.pojo.po.UserPO" >-->
+<!--        UPDATE-->
+<!--        user_details-->
+<!--        SET-->
+<!--        <if test="isVip != null">-->
+<!--            isVip = #{isVip},-->
+<!--        </if>-->
+<!--        <if test="endDate != null">-->
+<!--            endDate = #{endDate}-->
+<!--        </if>-->
+<!--        <where>-->
+<!--            userCode = #{userCode}-->
+<!--        </where>-->
+<!--    </update>-->
+
+</mapper>

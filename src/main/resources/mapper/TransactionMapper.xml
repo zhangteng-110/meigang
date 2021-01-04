@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.beautifulharborbackstage.dao.mapper.TransactionMapper" >
+    <resultMap id="TransactionResultDTO" type="com.beautifulharborbackstage.pojo.dto.TransactionResultDTO" >
+        <id column="transactionId" property="transactionId" jdbcType="BIGINT" />
+        <result column="transactionDate" property="transactionDate" jdbcType="DATE" />
+        <result column="transactionMoney" property="transactionMoney" jdbcType="BIGINT" />
+        <result column="userId" property="userId" jdbcType="BIGINT" />
+        <result column="transactionStatus" property="transactionStatus" jdbcType="TINYINT" />
+    </resultMap>
+
+    <sql id="Transaction_List" >
+        transactionId , transactionDate, transactionMoney , transactionStatus ,userId
+    </sql>
+
+    <select id="selectTransactionMoney" resultType="java.lang.Object" parameterType="com.beautifulharborbackstage.pojo.dto.TransactionDTO">
+        SELECT
+        sum(transactionMoney)
+        FROM transaction
+        where 1 = 1 and transactionStatus = 1 and transactionDate between #{startDate} and #{endDate}
+    </select>
+
+    <insert id="addTransaction" parameterType="com.beautifulharborbackstage.pojo.dto.TransactionDTO">
+        INSERT INTO
+            transaction
+            (transactionDate,transactionMoney,transactionStatus,userId)
+        VALUES
+            (#{transactionDate},#{transactionMoney},#{transactionStatus},#{userId})
+    </insert>
+
+
+</mapper>

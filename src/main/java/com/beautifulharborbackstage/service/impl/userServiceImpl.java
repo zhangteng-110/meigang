@@ -10,9 +10,27 @@ import java.util.List;
  * @date: Created in 17:35 2020/12/3
  */
 public interface userServiceImpl {
-    public UserDTO login(UserDTO userDTO);
+    public Object login(UserDTO userDTO);
 
-    public void register(UserDTO userDTO);
+    public Object register(UserDTO userDTO);
 
     public List<UserPO> selectAllVip(UserDTO userDTO);
+
+    public Object sendEmail();
+
+    public Object vipChange(UserDTO userDTO);
+
+    public Object deleteUserById(int userId);
+
+    public UserPO selectUserById(int userId);
+
+    public Object userEdit(UserDTO userDTO);
+
+    public Object consumption(UserDTO userDTO);
+
+    public Object recharge(UserDTO userDTO);
+
+    public int getUserNumber();
+
+    public int getUserVipNumber();
 }

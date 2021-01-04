@@ -9,6 +9,7 @@
         <result column="username" property="username" jdbcType="VARCHAR" />
         <result column="password" property="password" jdbcType="VARCHAR" />
         <result column="userCode" property="userCode" jdbcType="VARCHAR" />
+        <result column="cardNumber" property="cardNumber" jdbcType="VARCHAR" />
         <result column="startDate" property="startDate" jdbcType="DATE" />
         <result column="endDate" property="endDate" jdbcType="DATE" />
     </resultMap>
@@ -19,6 +20,7 @@
         <result column="userCode" property="userCode" jdbcType="VARCHAR" />
         <result column="email" property="email" jdbcType="VARCHAR" />
         <result column="phone" property="phone" jdbcType="VARCHAR" />
+        <result column="cardNumber" property="cardNumber" jdbcType="VARCHAR" />
         <result column="startDate" property="startDate" jdbcType="DATE" />
         <result column="endDate" property="endDate" jdbcType="DATE" />
         <result column="isVip" property="isVip" jdbcType="TINYINT" />
@@ -30,14 +32,14 @@
         userId , username, password,userCode
     </sql>
     <sql id="UserPo_List" >
-        userId , userSex, user.userCode userCode, email, phone, realName, startDate, endDate,isVip ,integral,money
+        userId , userSex, user.userCode userCode, email, phone, realName, startDate, endDate,isVip ,integral,money,cardNumber
     </sql>
 
     <select id="login" resultMap="UserDTO"  parameterType="com.beautifulharborbackstage.pojo.dto.UserDTO">
         SELECT
         <include refid="UserDTO_List" />
         FROM user
-        where 1 = 1 and username = #{username} and password = #{password}
+        where 1 = 1 and username = #{username} and password = #{password} and userCode is not null
     </select>
 
     <select id="selectAllVip" parameterType="com.beautifulharborbackstage.pojo.dto.UserDTO" resultMap="UserPo">
@@ -49,9 +51,39 @@
             <if test="realName != null and realName != ''">
                 and ud.realName like CONCAT('%',#{realName},'%')
             </if>
+            <if test="cardNumber != null and cardNumber != ''">
+                and ud.cardNumber = #{cardNumber}
+            </if>
             <if test="startDate != null and endDate != null">
                 and #{startDate} &gt;= ud.startDate and ud.endDate &lt;= #{endDate}
             </if>
+<!--            <if test="isVip != null">-->
+<!--                and ud.isVip = #{isVip}-->
+<!--            </if>-->
+        </where>
+    </select>
+
+    <select id="getUserNumber" resultType="java.lang.Integer">
+        SELECT
+            count(userId)
+        FROM user
+    </select>
+
+    <select id="getUserVipNumber" resultType="java.lang.Integer">
+        SELECT
+            count(userId)
+        FROM user u join user_details ud on u.userCode = ud.userCode
+        where ud.isVip = 1
+    </select>
+
+    <select id="selectUserById" parameterType="java.lang.Integer" resultMap="UserPo">
+        SELECT
+        <include refid="UserPo_List" />
+        FROM user LEFT JOIN user_details ud on user.userCode = ud.userCode
+        <where>
+            1 = 1
+            and user.userId = #{userId}
+
         </where>
     </select>
 
@@ -65,26 +97,79 @@
    <insert id="registerDetails" parameterType="com.beautifulharborbackstage.pojo.dto.UserDTO" >
         INSERT INTO
             user_details
-            (userSex, email, phone, realName, startDate, endDate,userCode)
+            (userSex, email, phone, realName, startDate, userCode ,isVip, cardNumber)
         VALUES
-            (#{userSex}, #{email},#{phone},#{realName},#{startDate},#{endDate},#{userCode})
+            (#{userSex}, #{email},#{phone},#{realName},#{startDate},#{userCode},#{isVip},#{cardNumber})
     </insert>
 
-<!--    <update id="update" parameterType="com.neo.entity.UserEntity" >
+    <update id="consumptionChange" parameterType="com.beautifulharborbackstage.pojo.dto.UserDTO">
         UPDATE
-        users
+        user u,user_details ud
         SET
-        <if test="userName != null">userName = #{userName},</if>
-        <if test="passWord != null">passWord = #{passWord},</if>
-        nick_name = #{nickName}
-        WHERE
-        id = #{id}
+        <if test="money != null">
+            ud.money = #{money},
+        </if>
+        <if test="integral != null">
+            ud.integral = #{integral}
+        </if>
+        <where>
+            u.userCode = ud.userCode
+            <if test="userCode != null and userCode != null">
+                and ud.userCode = #{userCode}
+            </if>
+            <if test="userId != null">
+                and u.userId = #{userId}
+            </if>
+        </where>
+    </update>
+    <update id="vipChange" parameterType="com.beautifulharborbackstage.pojo.po.UserPO" >
+        UPDATE
+        user_details
+        SET
+        <if test="isVip != null">
+            isVip = #{isVip},
+        </if>
+        <if test="endDate != null">
+            endDate = #{endDate}
+        </if>
+        <where>
+            userCode = #{userCode}
+        </where>
+    </update>
+    <update id="userEdit" parameterType="com.beautifulharborbackstage.pojo.po.UserPO" >
+        UPDATE
+        user u,user_details ud
+        SET
+        <if test="userCode != null and userCode != ''">
+            u.userCode = #{userCode},ud.userCode = #{userCode},
+        </if>
+        <if test="realName != null and realName != ''">
+            ud.realName = #{realName},
+        </if>
+        <if test="email != null and email != ''">
+            ud.email = #{email},
+        </if>
+        <if test="phone != null and phone != ''">
+            ud.phone = #{phone},
+        </if>
+        <if test="userSex != null">
+            ud.userSex = #{userSex},
+        </if>
+        <where>
+            u.userCode = ud.userCode
+            <if test="userId != null">
+                u.userId = #{userId}
+            </if>
+        </where>
     </update>
 
-    <delete id="delete" parameterType="java.lang.Long" >
-        DELETE FROM
-            users
+    <delete id="deleteUserById" parameterType="java.lang.Integer" >
+        DELETE
+            user,user_details
+        FROM
+            user,user_details
         WHERE
-            id =#{id}
-    </delete>-->
+            user.userCode = user_details.userCode
+            and userId = #{userId}
+    </delete>
 </mapper>

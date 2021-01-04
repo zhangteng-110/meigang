@@ -44,6 +44,8 @@
 
     <mappers>
         <mapper resource="mapper/UserMapper.xml"/>
+        <mapper resource="mapper/StaffMapper.xml"/>
+        <mapper resource="mapper/TransactionMapper.xml"/>
     </mappers>
 
 </configuration>

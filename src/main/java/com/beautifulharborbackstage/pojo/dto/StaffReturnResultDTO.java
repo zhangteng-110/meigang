@@ -1,35 +1,34 @@
 package com.beautifulharborbackstage.pojo.dto;
 
 import com.beautifulharborbackstage.pojo.po.UserSexEnum;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author zhangteng
- * @date: Created in 9:23 2020/12/4
+ * @date: Created in 17:14 2020/12/23
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO implements Serializable {
-    private int userId;
-    private String username;
+public class StaffReturnResultDTO {
+    private int staffId;
+    private String accountNumber;
     private String password;
-    private String userCode;
-    private UserSexEnum userSex;
-    private String email;
+    private String staffName;
+    private String staffCode;
     private String phone;
-    private String realName;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
-    private int isVip;
-    private int integral;
-    private int money;
-    private String cardNumber;
+    private UserSexEnum staffSex;
+    private int salary;
+    private int staffPositionId;
+    private String roleName;
 
 }

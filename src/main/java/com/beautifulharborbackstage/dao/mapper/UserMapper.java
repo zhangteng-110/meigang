@@ -28,4 +28,18 @@ public interface UserMapper {
     List<UserPO> selectAllVip(UserDTO userDTO);
 
     void registerDetails(UserDTO userDTO);
+
+    void consumptionChange(UserDTO userPO);
+
+    void vipChange(UserDTO userDTO);
+
+    void deleteUserById(int userId);
+
+    UserPO selectUserById(int userId);
+
+    void userEdit(UserDTO userDTO);
+
+    int getUserNumber();
+
+    int getUserVipNumber();
 }
