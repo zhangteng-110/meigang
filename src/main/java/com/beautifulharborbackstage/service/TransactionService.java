@@ -2,16 +2,15 @@ package com.beautifulharborbackstage.service;
 
 import com.beautifulharborbackstage.dao.mapper.TransactionMapper;
 import com.beautifulharborbackstage.pojo.dto.TransactionDTO;
+import com.beautifulharborbackstage.pojo.dto.TransactionResultDTO;
 import com.beautifulharborbackstage.service.impl.TransactionServiceImpl;
 import com.beautifulharborbackstage.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sun.security.provider.Sun;
 
-import java.time.LocalDate;
-import java.time.temporal.TemporalAdjusters;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author zhangteng
@@ -91,5 +90,10 @@ public class TransactionService implements TransactionServiceImpl {
             date[i]=sum;
         }
         return date;
+    }
+
+    @Override
+    public List<TransactionResultDTO> selectTransactionList(TransactionDTO transactionDTO) {
+        return transactionMapper.selectTransactionList(transactionDTO);
     }
 }

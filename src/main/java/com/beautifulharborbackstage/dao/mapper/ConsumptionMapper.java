@@ -1,5 +1,7 @@
 package com.beautifulharborbackstage.dao.mapper;
 
+import com.beautifulharborbackstage.pojo.dto.ConsumptionDTO;
+import com.beautifulharborbackstage.pojo.dto.ConsumptionResultDTO;
 import com.beautifulharborbackstage.pojo.dto.TransactionDTO;
 import com.beautifulharborbackstage.pojo.dto.TransactionResultDTO;
 import org.apache.ibatis.annotations.Mapper;
@@ -13,10 +15,10 @@ import java.util.List;
  */
 @Mapper
 @Repository
-public interface TransactionMapper {
-    void addTransaction(TransactionDTO transactionDTO);
+public interface ConsumptionMapper {
+    void addConsumption(ConsumptionDTO consumptionDTO);
+//
+//    Object selectTransactionMoney(TransactionDTO transactionDTO);
 
-    Object selectTransactionMoney(TransactionDTO transactionDTO);
-
-    List<TransactionResultDTO> selectTransactionList(TransactionDTO transactionDTO);
+    List<ConsumptionResultDTO> selectConsumptionList(ConsumptionDTO consumptionDTO);
 }

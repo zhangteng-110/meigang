@@ -1,6 +1,10 @@
 package com.beautifulharborbackstage.service.impl;
 
+
 import com.beautifulharborbackstage.pojo.dto.TransactionDTO;
+import com.beautifulharborbackstage.pojo.dto.TransactionResultDTO;
+
+import java.util.List;
 
 /**
  * @author zhangteng
@@ -14,4 +18,6 @@ public interface TransactionServiceImpl {
     Object selectLastYearMoney();
 
     Object selectEveryYearMoney();
+
+    List<TransactionResultDTO> selectTransactionList(TransactionDTO transactionDTO);
 }

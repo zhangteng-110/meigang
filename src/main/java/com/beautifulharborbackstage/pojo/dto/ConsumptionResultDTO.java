@@ -14,12 +14,17 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TransactionResultDTO {
-    private int transactionId;
+public class ConsumptionResultDTO {
+    private int consumptionId;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date transactionDate;
+    private Date consumptionDate;
     private int userId;
-    private int transactionMoney;
-    private int transactionStatus;
+    private int consumptionMoney;
+    private int consumptionStatus;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date startDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date endDate;
+    private int integral;
     private String realName;
 }

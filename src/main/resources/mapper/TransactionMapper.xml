@@ -13,7 +13,7 @@
     </resultMap>
 
     <sql id="Transaction_List" >
-        transactionId , transactionDate, transactionMoney , transactionStatus ,userId
+        transactionId , transactionDate, transactionMoney , transactionStatus ,userId,realName
     </sql>
 
     <select id="selectTransactionMoney" resultType="java.lang.Object" parameterType="com.beautifulharborbackstage.pojo.dto.TransactionDTO">
@@ -21,6 +21,18 @@
         sum(transactionMoney)
         FROM transaction
         where 1 = 1 and transactionStatus = 1 and transactionDate between #{startDate} and #{endDate}
+    </select>
+
+    <select id="selectTransactionList" resultType="com.beautifulharborbackstage.pojo.dto.TransactionResultDTO" parameterType="com.beautifulharborbackstage.pojo.dto.TransactionDTO">
+        SELECT
+        transactionId , transactionDate, transactionMoney , transactionStatus ,t.userId,t2.realName
+        FROM transaction t LEFT JOIN (select ud.realName,u.userId from user u join user_details ud on u.userCode = ud.userCode) t2 on t.userid=t2.userId
+        <where>
+            1 = 1
+            <if test="startDate != null and endDate != null">
+                and transactionDate &gt;= #{startDate} and transactionDate &lt;= #{endDate}
+            </if>
+        </where>
     </select>
 
     <insert id="addTransaction" parameterType="com.beautifulharborbackstage.pojo.dto.TransactionDTO">

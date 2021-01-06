@@ -1,7 +1,9 @@
 package com.beautifulharborbackstage.service;
 
+import com.beautifulharborbackstage.dao.mapper.ConsumptionMapper;
 import com.beautifulharborbackstage.dao.mapper.TransactionMapper;
 import com.beautifulharborbackstage.dao.mapper.UserMapper;
+import com.beautifulharborbackstage.pojo.dto.ConsumptionDTO;
 import com.beautifulharborbackstage.pojo.dto.TransactionDTO;
 import com.beautifulharborbackstage.pojo.dto.UserDTO;
 import com.beautifulharborbackstage.pojo.po.ErrorEnum;
@@ -33,6 +35,9 @@ public class UserService implements userServiceImpl {
 
     @Autowired
     private TransactionMapper transactionMapper;
+
+    @Autowired
+    private ConsumptionMapper consumptionMapper;
 
     @Override
     public ReturnException login(UserDTO userDTO) {
@@ -139,9 +144,16 @@ public class UserService implements userServiceImpl {
     @Transactional
     public Object consumption(UserDTO userDTO) {
         UserPO userPO = userMapper.selectUserById(userDTO.getUserId());
+        ConsumptionDTO consumptionDTO = new ConsumptionDTO();
+        consumptionDTO.setUserId(userDTO.getUserId());
+        consumptionDTO.setConsumptionDate(new Date());
+        consumptionDTO.setConsumptionMoney(userDTO.getMoney());
+        consumptionDTO.setConsumptionStatus(1);
+        consumptionDTO.setIntegral(userDTO.getMoney());
         userDTO.setIntegral(userPO.getIntegral()+userDTO.getMoney());
         userDTO.setMoney(userPO.getMoney()-userDTO.getMoney());
         userMapper.consumptionChange(userDTO);
+        consumptionMapper.addConsumption(consumptionDTO);
         return new ReturnException(ErrorEnum.CONSUMPTION_SUCCESS,null);
     }
 

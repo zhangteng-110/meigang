@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.beautifulharborbackstage.dao.mapper.ConsumptionMapper" >
+    <resultMap id="TransactionResultDTO" type="com.beautifulharborbackstage.pojo.dto.ConsumptionResultDTO" >
+        <id column="consumptionId" property="consumptionId" jdbcType="BIGINT" />
+        <result column="consumptionDate" property="consumptionDate" jdbcType="DATE" />
+        <result column="consumptionMoney" property="consumptionMoney" jdbcType="BIGINT" />
+        <result column="userId" property="userId" jdbcType="BIGINT" />
+        <result column="integral" property="integral" jdbcType="BIGINT" />
+        <result column="consumptionStatus" property="consumptionStatus" jdbcType="TINYINT" />
+    </resultMap>
+
+    <sql id="Transaction_List" >
+        consumptionId , consumptionDate, consumptionMoney , consumptionStatus ,userId,realName
+    </sql>
+
+<!--    <select id="selectTransactionMoney" resultType="java.lang.Object" parameterType="com.beautifulharborbackstage.pojo.dto.TransactionDTO">-->
+<!--        SELECT-->
+<!--        sum(transactionMoney)-->
+<!--        FROM transaction-->
+<!--        where 1 = 1 and transactionStatus = 1 and transactionDate between #{startDate} and #{endDate}-->
+<!--    </select>-->
+
+    <select id="selectConsumptionList" resultType="com.beautifulharborbackstage.pojo.dto.ConsumptionResultDTO" parameterType="com.beautifulharborbackstage.pojo.dto.ConsumptionDTO">
+        SELECT
+        consumptionId , consumptionDate, consumptionMoney , consumptionStatus ,c.userId,t2.realName,c.integral
+        FROM consumption c LEFT JOIN (select ud.realName,u.userId from user u join user_details ud on u.userCode = ud.userCode) t2 on c.userid=t2.userId
+        <where>
+            1 = 1
+            <if test="startDate != null and endDate != null">
+                and consumptionDate &gt;= #{startDate} and consumptionDate &lt;= #{endDate}
+            </if>
+        </where>
+    </select>
+
+    <insert id="addConsumption" parameterType="com.beautifulharborbackstage.pojo.dto.ConsumptionDTO">
+        INSERT INTO
+            consumption
+            (consumptionDate,consumptionMoney,consumptionStatus,userId,integral)
+        VALUES
+            (#{consumptionDate},#{consumptionMoney},#{consumptionStatus},#{userId},#{integral})
+    </insert>
+
+
+</mapper>
