@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.beautifulharborbackstage.dao.mapper.RoleMapper" >
+    <resultMap id="RoleReturnResultDTO" type="com.beautifulharborbackstage.pojo.dto.RoleReturnResultDTO" >
+        <id column="roleId" property="roleId" jdbcType="BIGINT" />
+        <result column="roleName" property="roleName" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="RoleDTO_List" >
+        roleId,roleName
+    </sql>
+
+    <select id="getRoleList" resultMap="RoleReturnResultDTO">
+        SELECT
+        <include refid="RoleDTO_List" />
+        FROM role
+    </select>
+
+
+</mapper>

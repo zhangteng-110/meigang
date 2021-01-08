@@ -21,4 +21,8 @@ public interface staffServiceImpl {
     public Object register(StaffDTO staffDTO);
 
     public int getStaffNumber();
+
+    public StaffReturnResultDTO selectStaffById(int staffId);
+
+    public Object updateStaffDetail(StaffDTO staffDTO);
 }

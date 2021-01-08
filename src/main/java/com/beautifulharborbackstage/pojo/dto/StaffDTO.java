@@ -29,6 +29,6 @@ public class StaffDTO {
     private UserSexEnum staffSex;
     private int salary;
     private int staffPositionId;
-
+    private String roleName;
 
 }

@@ -39,6 +39,16 @@ public class staffController {
         return staffServiceImpl.login(staffDTO);
     }
 
+    @ApiOperation("员工注册")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "staffDTO",value = "传输dto",required = true,paramType = "body")
+    })
+    @PostMapping("/register")
+    @CrossOrigin
+    public Object register(@RequestBody StaffDTO staffDTO){
+        return staffServiceImpl.register(staffDTO);
+    }
+
     @ApiOperation("查询所有员工")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "staffDTO",value = "传输dto",required = true,paramType = "body"),
@@ -64,6 +74,26 @@ public class staffController {
     @CrossOrigin
     public Object deleteStaffById(@RequestParam(value = "staffId", required = true) int staffId){
         return staffServiceImpl.deleteStaffById(staffId);
+    }
+
+    @ApiOperation("员工信息回显")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "staffId",value = "员工id",required = true,paramType = "int")
+    })
+    @PostMapping("/selectStaffById")
+    @CrossOrigin
+    public Object selectStaffById(@RequestParam(value = "staffId", required = true) int staffId){
+        return staffServiceImpl.selectStaffById(staffId);
+    }
+
+    @ApiOperation("员工信息编辑")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "staffDTO",value = "传输dto",required = true,paramType = "body")
+    })
+    @PostMapping("/updateStaffDetail")
+    @CrossOrigin
+    public Object updateStaffDetail(@RequestBody StaffDTO staffDTO){
+        return staffServiceImpl.updateStaffDetail(staffDTO);
     }
 
     @ApiOperation("获取员工数量")

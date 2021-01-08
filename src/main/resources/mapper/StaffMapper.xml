@@ -37,14 +37,27 @@
 
     <select id="selectAllStaff" parameterType="com.beautifulharborbackstage.pojo.dto.UserDTO" resultMap="StaffReturnResultDTO">
         SELECT
-        <include refid="StaffDTO_List" />
-        FROM staff
+        <include refid="StaffDTO_List" />,r.roleName
+        FROM staff s left join role r on s.staffPositionId = r.roleId
         <where>
             1 = 1
             <if test="staffName != null and staffName != ''">
-                and staffName like CONCAT('%',#{staffName},'%')
+                and s.staffName like CONCAT('%',#{staffName},'%')
             </if>
-            and staffPositionId not in ('1')
+            and s.staffPositionId not in ('1','2','3')
+        </where>
+    </select>
+
+    <select id="selectStaffById" parameterType="java.lang.Integer" resultMap="StaffReturnResultDTO">
+        SELECT
+        <include refid="StaffDTO_List" />,r.roleName
+        FROM staff s join role r on s.staffPositionId = r.roleId
+        <where>
+            1 = 1
+            <if test="staffId != null">
+                and s.staffId = #{staffId}
+            </if>
+
         </where>
     </select>
 
@@ -60,9 +73,9 @@
     <insert id="staffRegister" parameterType="com.beautifulharborbackstage.pojo.dto.StaffDTO" >
         INSERT INTO
             staff
-            (staffSex, phone, staffName, startDate, staffCode ,salary)
+            (staffSex, phone, staffName, startDate, staffCode ,salary,staffPositionId)
         VALUES
-            (#{staffSex},#{phone},#{staffName},#{startDate},#{staffCode},#{salary})
+            (#{staffSex},#{phone},#{staffName},#{startDate},#{staffCode},#{salary},#{staffPositionId})
     </insert>
 <!--   <insert id="register" parameterType="com.beautifulharborbackstage.pojo.dto.UserDTO" >-->
 <!--        INSERT INTO-->
@@ -72,20 +85,32 @@
 <!--            (#{username}, #{password},#{userCode})-->
 <!--    </insert>-->
 
-<!--    <update id="consumptionChange" parameterType="com.beautifulharborbackstage.pojo.po.UserPO" >-->
-<!--        UPDATE-->
-<!--        user_details-->
-<!--        SET-->
-<!--        <if test="money != null">-->
-<!--            money = #{money},-->
-<!--        </if>-->
-<!--        <if test="integral != null">-->
-<!--            integral = #{integral}-->
-<!--        </if>-->
-<!--        <where>-->
-<!--            userCode = #{userCode}-->
-<!--        </where>-->
-<!--    </update>-->
+    <update id="updateStaffDetail" parameterType="com.beautifulharborbackstage.pojo.dto.StaffDTO" >
+        UPDATE
+        staff
+        SET
+        <if test="staffName != null and staffName != ''">
+            staffName = #{staffName},
+        </if>
+        <if test="staffSex != null">
+            staffSex = #{staffSex},
+        </if>
+        <if test="staffCode != null">
+            staffCode = #{staffCode},
+        </if>
+        <if test="phone != null">
+            phone = #{phone},
+        </if>
+        <if test="salary != null">
+            salary = #{salary},
+        </if>
+        <if test="staffPositionId != null">
+            staffPositionId = #{staffPositionId}
+        </if>
+        <where>
+            staffId = #{staffId}
+        </where>
+    </update>
 <!--    <update id="vipChange" parameterType="com.beautifulharborbackstage.pojo.po.UserPO" >-->
 <!--        UPDATE-->
 <!--        user_details-->

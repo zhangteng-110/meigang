@@ -47,6 +47,7 @@
         <mapper resource="mapper/StaffMapper.xml"/>
         <mapper resource="mapper/TransactionMapper.xml"/>
         <mapper resource="mapper/ConsumptionMapper.xml"/>
+        <mapper resource="mapper/RoleMapper.xml"/>
     </mappers>
 
 </configuration>

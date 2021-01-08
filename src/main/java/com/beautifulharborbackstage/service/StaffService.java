@@ -12,6 +12,7 @@ import com.beautifulharborbackstage.utils.JWTUtil;
 import com.beautifulharborbackstage.utils.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -66,7 +67,7 @@ public class StaffService implements staffServiceImpl {
     public Object register(StaffDTO staffDTO) {
         StaffReturnResultDTO staff = staffMapper.login(staffDTO);
         if(staff==null){
-            staff.setStartDate(new Date());
+            staffDTO.setStartDate(new Date());
             staffMapper.staffRegister(staffDTO);
             return new staffReturnException(ErrorEnum.REGISTER_SUCCESS,null,null);
         }
@@ -76,6 +77,17 @@ public class StaffService implements staffServiceImpl {
     @Override
     public int getStaffNumber() {
         return staffMapper.getStaffNumber();
+    }
+
+    @Override
+    public StaffReturnResultDTO selectStaffById(int staffId) {
+        return staffMapper.selectStaffById(staffId);
+    }
+
+    @Override
+    public Object updateStaffDetail(StaffDTO staffDTO) {
+        staffMapper.updateStaffDetail(staffDTO);
+        return new staffReturnException(ErrorEnum.EDIT_USER_SUCCESS,null,null);
     }
 
 

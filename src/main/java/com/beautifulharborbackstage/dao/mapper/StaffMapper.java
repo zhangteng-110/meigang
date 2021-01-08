@@ -5,6 +5,7 @@ import com.beautifulharborbackstage.pojo.dto.StaffReturnResultDTO;
 import com.beautifulharborbackstage.pojo.dto.UserDTO;
 import com.beautifulharborbackstage.pojo.po.UserPO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,9 +17,13 @@ public interface StaffMapper {
 
     List<StaffReturnResultDTO> selectAllStaff(StaffDTO staffDTO);
 
-    void deleteStaffById(int userId);
+    void deleteStaffById(@Param("staffId")int staffId);
 
     void staffRegister(StaffDTO staffDTO);
 
     int getStaffNumber();
+
+    StaffReturnResultDTO selectStaffById(@Param("staffId") int staffId);
+
+    void updateStaffDetail(StaffDTO staffDTO);
 }
