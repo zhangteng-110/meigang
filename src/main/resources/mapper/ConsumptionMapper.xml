@@ -33,6 +33,9 @@
             <if test="startDate != null and endDate != null">
                 and consumptionDate &gt;= #{startDate} and consumptionDate &lt;= #{endDate}
             </if>
+            <if test="realName != null and realName != ''">
+                and t2.realName like CONCAT('%',#{realName},'%')
+            </if>
         </where>
     </select>
 

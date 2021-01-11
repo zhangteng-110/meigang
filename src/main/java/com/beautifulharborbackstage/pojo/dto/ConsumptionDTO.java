@@ -26,4 +26,5 @@ public class ConsumptionDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
     private int integral;
+    private String realName;
 }
