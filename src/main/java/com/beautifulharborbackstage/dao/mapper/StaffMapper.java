@@ -26,4 +26,6 @@ public interface StaffMapper {
     StaffReturnResultDTO selectStaffById(@Param("staffId") int staffId);
 
     void updateStaffDetail(StaffDTO staffDTO);
+
+    void updateStatusById(StaffDTO staffDTO);
 }

@@ -25,4 +25,6 @@ public interface staffServiceImpl {
     public StaffReturnResultDTO selectStaffById(int staffId);
 
     public Object updateStaffDetail(StaffDTO staffDTO);
+
+    public void updateStatusById(StaffDTO staffDTO);
 }

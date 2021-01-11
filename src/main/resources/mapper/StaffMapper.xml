@@ -16,10 +16,13 @@
         <result column="staffSex" property="staffSex" javaType="com.beautifulharborbackstage.pojo.po.UserSexEnum"/>
         <result column="salary" property="salary" jdbcType="BIGINT" />
         <result column="staffPositionId" property="staffPositionId" jdbcType="BIGINT" />
+        <result column="roleName" property="roleName" jdbcType="VARCHAR" />
+        <result column="roleId" property="roleId" jdbcType="BIGINT" />
+        <result column="status" property="status" jdbcType="BIGINT" />
     </resultMap>
 
     <sql id="StaffDTO_List" >
-        staffId , accountNumber, password , staffCode ,staffName,staffSex,phone,startDate,endDate,salary
+        staffId , accountNumber, password , staffCode ,staffName,staffSex,phone,startDate,endDate,salary,status
     </sql>
 
     <select id="getStaffNumber" resultType="java.lang.Integer">
@@ -50,7 +53,7 @@
 
     <select id="selectStaffById" parameterType="java.lang.Integer" resultMap="StaffReturnResultDTO">
         SELECT
-        <include refid="StaffDTO_List" />,r.roleName
+        <include refid="StaffDTO_List" />,r.roleId,r.roleName
         FROM staff s join role r on s.staffPositionId = r.roleId
         <where>
             1 = 1
@@ -77,13 +80,6 @@
         VALUES
             (#{staffSex},#{phone},#{staffName},#{startDate},#{staffCode},#{salary},#{staffPositionId})
     </insert>
-<!--   <insert id="register" parameterType="com.beautifulharborbackstage.pojo.dto.UserDTO" >-->
-<!--        INSERT INTO-->
-<!--            user-->
-<!--            (username,password,userCode)-->
-<!--        VALUES-->
-<!--            (#{username}, #{password},#{userCode})-->
-<!--    </insert>-->
 
     <update id="updateStaffDetail" parameterType="com.beautifulharborbackstage.pojo.dto.StaffDTO" >
         UPDATE
@@ -111,19 +107,22 @@
             staffId = #{staffId}
         </where>
     </update>
-<!--    <update id="vipChange" parameterType="com.beautifulharborbackstage.pojo.po.UserPO" >-->
-<!--        UPDATE-->
-<!--        user_details-->
-<!--        SET-->
-<!--        <if test="isVip != null">-->
-<!--            isVip = #{isVip},-->
-<!--        </if>-->
-<!--        <if test="endDate != null">-->
-<!--            endDate = #{endDate}-->
-<!--        </if>-->
-<!--        <where>-->
-<!--            userCode = #{userCode}-->
-<!--        </where>-->
-<!--    </update>-->
+    <update id="updateStatusById" parameterType="com.beautifulharborbackstage.pojo.dto.StaffDTO">
+        UPDATE
+        staff
+        SET
+        <if test="status != null">
+            status = #{status},
+        </if>
+        <if test="endDate != null and status != 1">
+            endDate = #{endDate}
+        </if>
+        <if test="status == 1 and startDate != null">
+            endDate = null,startDate = #{startDate}
+        </if>
+        <where>
+            staffId = #{staffId}
+        </where>
+    </update>
 
 </mapper>

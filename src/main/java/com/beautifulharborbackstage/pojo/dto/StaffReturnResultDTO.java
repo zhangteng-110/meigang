@@ -30,5 +30,6 @@ public class StaffReturnResultDTO {
     private int salary;
     private int staffPositionId;
     private String roleName;
-
+    private int roleId;
+    private int status;
 }

@@ -90,5 +90,15 @@ public class StaffService implements staffServiceImpl {
         return new staffReturnException(ErrorEnum.EDIT_USER_SUCCESS,null,null);
     }
 
+    @Override
+    public void updateStatusById(StaffDTO staffDTO) {
+        if (staffDTO.getStatus()!=1){
+            staffDTO.setEndDate(new Date());
+        }else{
+            staffDTO.setStartDate(new Date());
+        }
+        staffMapper.updateStatusById(staffDTO);
+    }
+
 
 }

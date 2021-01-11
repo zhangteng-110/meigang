@@ -103,4 +103,13 @@ public class staffController {
         return staffServiceImpl.getStaffNumber();
     }
 
+    @ApiOperation("员工状态编辑")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "staffDTO",value = "传输dto",required = true,paramType = "body")
+    })
+    @PostMapping("/updateStatusById")
+    @CrossOrigin
+    public void updateStatusById(@RequestBody StaffDTO staffDTO){
+        staffServiceImpl.updateStatusById(staffDTO);
+    }
 }
