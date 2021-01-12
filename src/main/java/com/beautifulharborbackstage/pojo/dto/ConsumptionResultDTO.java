@@ -27,4 +27,6 @@ public class ConsumptionResultDTO {
     private Date endDate;
     private int integral;
     private String realName;
+    private String projectName;
+
 }

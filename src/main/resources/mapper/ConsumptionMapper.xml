@@ -17,17 +17,10 @@
         consumptionId , consumptionDate, consumptionMoney , consumptionStatus ,userId,realName
     </sql>
 
-<!--    <select id="selectTransactionMoney" resultType="java.lang.Object" parameterType="com.beautifulharborbackstage.pojo.dto.TransactionDTO">-->
-<!--        SELECT-->
-<!--        sum(transactionMoney)-->
-<!--        FROM transaction-->
-<!--        where 1 = 1 and transactionStatus = 1 and transactionDate between #{startDate} and #{endDate}-->
-<!--    </select>-->
-
     <select id="selectConsumptionList" resultType="com.beautifulharborbackstage.pojo.dto.ConsumptionResultDTO" parameterType="com.beautifulharborbackstage.pojo.dto.ConsumptionDTO">
         SELECT
-        consumptionId , consumptionDate, consumptionMoney , consumptionStatus ,c.userId,t2.realName,c.integral
-        FROM consumption c LEFT JOIN (select ud.realName,u.userId from user u join user_details ud on u.userCode = ud.userCode) t2 on c.userid=t2.userId
+        consumptionId , consumptionDate, consumptionMoney , consumptionStatus ,c.userId,t2.realName,c.integral,s.projectName
+        FROM consumption c LEFT JOIN (select ud.realName,u.userId from user u join user_details ud on u.userCode = ud.userCode) t2 on c.userid=t2.userId left join service_items s on c.projectId = s.projectId
         <where>
             1 = 1
             <if test="startDate != null and endDate != null">
@@ -42,9 +35,9 @@
     <insert id="addConsumption" parameterType="com.beautifulharborbackstage.pojo.dto.ConsumptionDTO">
         INSERT INTO
             consumption
-            (consumptionDate,consumptionMoney,consumptionStatus,userId,integral)
+            (consumptionDate,consumptionMoney,consumptionStatus,userId,integral,projectId)
         VALUES
-            (#{consumptionDate},#{consumptionMoney},#{consumptionStatus},#{userId},#{integral})
+            (#{consumptionDate},#{consumptionMoney},#{consumptionStatus},#{userId},#{integral},#{projectId})
     </insert>
 
 

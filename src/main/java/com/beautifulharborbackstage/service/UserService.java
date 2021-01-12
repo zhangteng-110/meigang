@@ -150,6 +150,7 @@ public class UserService implements userServiceImpl {
         consumptionDTO.setConsumptionMoney(userDTO.getMoney());
         consumptionDTO.setConsumptionStatus(1);
         consumptionDTO.setIntegral(userDTO.getMoney());
+        consumptionDTO.setProjectId(userDTO.getProjectId());
         userDTO.setIntegral(userPO.getIntegral()+userDTO.getMoney());
         userDTO.setMoney(userPO.getMoney()-userDTO.getMoney());
         userMapper.consumptionChange(userDTO);

@@ -48,6 +48,7 @@
         <mapper resource="mapper/TransactionMapper.xml"/>
         <mapper resource="mapper/ConsumptionMapper.xml"/>
         <mapper resource="mapper/RoleMapper.xml"/>
+        <mapper resource="mapper/ServiceItemsMapper.xml"/>
     </mappers>
 
 </configuration>

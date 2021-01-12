@@ -31,5 +31,5 @@ public class UserDTO implements Serializable {
     private int integral;
     private int money;
     private String cardNumber;
-
+    private int projectId;
 }
