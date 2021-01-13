@@ -120,7 +120,7 @@ public class userController {
         return userServiceImpl.recharge(userDTO);
     };
 
-    @ApiOperation("获取员工数量")
+    @ApiOperation("获取用户数量")
     @GetMapping("/getUserNumber")
     @CrossOrigin
     public Object getUserNumber(){
