@@ -14,4 +14,6 @@ public interface ServiceItemsMapper {
     List<ServiceItemsResultDTO> getManProjectList();
 
     List<ServiceItemsResultDTO> getWemanProjectList();
+
+    List<ServiceItemsResultDTO> getProjectList();
 }

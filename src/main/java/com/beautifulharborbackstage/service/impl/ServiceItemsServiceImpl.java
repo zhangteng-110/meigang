@@ -12,4 +12,6 @@ public interface ServiceItemsServiceImpl {
     List<ServiceItemsResultDTO> getManProjectList();
 
     List<ServiceItemsResultDTO> getWemanProjectList();
+
+    List<ServiceItemsResultDTO> getProjectList();
 }

@@ -33,4 +33,9 @@
         </where>
     </select>
 
+    <select id="getProjectList" resultMap="ServiceItemsResultDTO">
+        SELECT
+        <include refid="ServiceItems_List" />
+        FROM service_items
+    </select>
 </mapper>

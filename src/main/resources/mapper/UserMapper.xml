@@ -146,19 +146,19 @@
         <if test="realName != null and realName != ''">
             ud.realName = #{realName},
         </if>
+        <if test="userSex != null">
+            ud.userSex = #{userSex},
+        </if>
         <if test="email != null and email != ''">
             ud.email = #{email},
         </if>
         <if test="phone != null and phone != ''">
-            ud.phone = #{phone},
-        </if>
-        <if test="userSex != null">
-            ud.userSex = #{userSex},
+            ud.phone = #{phone}
         </if>
         <where>
             u.userCode = ud.userCode
             <if test="userId != null">
-                u.userId = #{userId}
+                and u.userId = #{userId}
             </if>
         </where>
     </update>

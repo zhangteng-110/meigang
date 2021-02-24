@@ -26,4 +26,9 @@ public class ServiceItemsService implements ServiceItemsServiceImpl {
     public List<ServiceItemsResultDTO> getWemanProjectList() {
         return serviceItemsMapper.getWemanProjectList();
     }
+
+    @Override
+    public List<ServiceItemsResultDTO> getProjectList() {
+        return serviceItemsMapper.getProjectList();
+    }
 }

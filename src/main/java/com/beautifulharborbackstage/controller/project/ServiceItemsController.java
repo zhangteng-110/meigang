@@ -34,4 +34,11 @@ public class ServiceItemsController {
     public Object getWemanProjectList(){
         return serviceItemsService.getWemanProjectList();
     }
+
+    @ApiOperation("查询所有项目")
+    @GetMapping("/getProjectList")
+    @CrossOrigin
+    public Object getProjectList(){
+        return serviceItemsService.getProjectList();
+    }
 }

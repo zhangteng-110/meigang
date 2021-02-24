@@ -100,6 +100,16 @@ public class userController {
         return userServiceImpl.selectUserById(userId);
     };
 
+    @ApiOperation("用户信息编辑")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "UserPO",value = "传输po",required = true,paramType = "body")
+    })
+    @PostMapping("/userEdit")
+    @CrossOrigin
+    public Object userEdit(@RequestBody UserDTO userDTO){
+        return userServiceImpl.userEdit(userDTO);
+    };
+
     @ApiOperation("金额消费")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "UserPO",value = "传输po",required = true,paramType = "body")
