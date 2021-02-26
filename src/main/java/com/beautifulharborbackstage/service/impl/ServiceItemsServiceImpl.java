@@ -1,5 +1,6 @@
 package com.beautifulharborbackstage.service.impl;
 
+import com.beautifulharborbackstage.pojo.dto.ServiceItemsDTO;
 import com.beautifulharborbackstage.pojo.dto.ServiceItemsResultDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -14,4 +15,8 @@ public interface ServiceItemsServiceImpl {
     List<ServiceItemsResultDTO> getWemanProjectList();
 
     List<ServiceItemsResultDTO> getProjectList();
+
+    Object updateStatusById(ServiceItemsDTO serviceItemsDTO);
+
+    Object addServiceItem(ServiceItemsDTO serviceItemsDTO);
 }

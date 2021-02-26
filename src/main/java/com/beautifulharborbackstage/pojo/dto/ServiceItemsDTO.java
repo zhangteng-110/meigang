@@ -1,6 +1,7 @@
 package com.beautifulharborbackstage.pojo.dto;
 
 import com.beautifulharborbackstage.pojo.po.UserSexEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,9 +13,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ServiceItemsResultDTO {
+public class ServiceItemsDTO {
     private int projectId;
     private String projectName;
     private UserSexEnum sex;
     private int isClose;
+//    @JsonIgnore
+    private int[] projectIds;
 }

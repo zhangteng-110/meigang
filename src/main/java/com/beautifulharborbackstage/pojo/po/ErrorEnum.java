@@ -30,7 +30,10 @@ public enum ErrorEnum {
 
 	CONSUMPTION_SUCCESS("200","消费成功"),
 
-	RECHARGE_SUCCESS("200","充值成功");
+	RECHARGE_SUCCESS("200","充值成功"),
+
+	SUCCESS("200","成功"),
+	Fail("500","失败");
 
 	private String errorCode;
 

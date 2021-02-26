@@ -7,6 +7,7 @@
     <resultMap id="ServiceItemsResultDTO" type="com.beautifulharborbackstage.pojo.dto.ServiceItemsResultDTO" >
         <id column="projectId" property="projectId" jdbcType="BIGINT" />
         <result column="projectName" property="projectName" jdbcType="VARCHAR" />
+        <result column="isClose" property="isClose" jdbcType="INTEGER" />
     </resultMap>
 
     <sql id="ServiceItems_List" >
@@ -19,7 +20,7 @@
         FROM service_items
         <where>
             1 = 1
-            and sex = 'MAN'
+            and sex = 'MAN' and isClose = 0
         </where>
     </select>
 
@@ -29,13 +30,40 @@
         FROM service_items
         <where>
             1 = 1
-            and sex = 'WEMAN'
+            and sex = 'WEMAN' and isClose = 0
         </where>
     </select>
 
     <select id="getProjectList" resultMap="ServiceItemsResultDTO">
         SELECT
-        <include refid="ServiceItems_List" />
+        projectId,projectName,isClose
         FROM service_items
     </select>
+
+    <update id="updateStatusById" parameterType="com.beautifulharborbackstage.pojo.dto.ServiceItemsDTO" >
+        UPDATE
+        service_items
+        SET
+        <if test="isClose != null">
+            isClose = #{isClose}
+        </if>
+        <where>
+            <if test="projectIds != null">
+                projectId in
+                <foreach item="projectId" index="index" collection="projectIds" open="(" separator="," close=")">
+                    #{projectId}
+                </foreach>
+            </if>
+        </where>
+    </update>
+
+    <insert id="addServiceItem" parameterType="com.beautifulharborbackstage.pojo.dto.ServiceItemsDTO" >
+        INSERT INTO
+            service_items
+            (projectName,sex,isClose)
+        VALUES
+            <if test="projectName != null and projectName != ''">
+                (#{projectName}, #{sex},#{isClose})
+            </if>
+    </insert>
 </mapper>

@@ -1,13 +1,11 @@
 package com.beautifulharborbackstage.controller.project;
 
+import com.beautifulharborbackstage.pojo.dto.ServiceItemsDTO;
 import com.beautifulharborbackstage.service.impl.ServiceItemsServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author zhangteng
@@ -40,5 +38,18 @@ public class ServiceItemsController {
     @CrossOrigin
     public Object getProjectList(){
         return serviceItemsService.getProjectList();
+    }
+
+    @ApiOperation("修改服务项目状态")
+    @PostMapping("/updateStatusById")
+    @CrossOrigin
+    public Object updateStatusById(@RequestBody ServiceItemsDTO serviceItemsDTO){
+        return serviceItemsService.updateStatusById(serviceItemsDTO);
+    }
+    @ApiOperation("新增服务项目")
+    @PostMapping("/addServiceItem")
+    @CrossOrigin
+    public Object addServiceItem(@RequestBody ServiceItemsDTO serviceItemsDTO){
+        return serviceItemsService.addServiceItem(serviceItemsDTO);
     }
 }

@@ -162,13 +162,13 @@ public class UserService implements userServiceImpl {
     @Transactional
     public Object recharge(UserDTO userDTO) {
         UserPO userPO = userMapper.selectUserById(userDTO.getUserId());
-        userDTO.setMoney(userPO.getMoney()+userDTO.getMoney());
-        userMapper.consumptionChange(userDTO);
         TransactionDTO transactionDTO = new TransactionDTO();
         transactionDTO.setUserId(userDTO.getUserId());
         transactionDTO.setTransactionDate(new Date());
         transactionDTO.setTransactionStatus(1);
         transactionDTO.setTransactionMoney(userDTO.getMoney());
+        userDTO.setMoney(userPO.getMoney()+userDTO.getMoney());
+        userMapper.consumptionChange(userDTO);
         transactionMapper.addTransaction(transactionDTO);
         return new ReturnException(ErrorEnum.CONSUMPTION_SUCCESS,null);
     }
