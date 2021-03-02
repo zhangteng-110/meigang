@@ -57,4 +57,31 @@ public class ServiceItemsService implements ServiceItemsServiceImpl {
         }
         return new ReturnException(ErrorEnum.SUCCESS,null);
     }
+
+    @Override
+    public Object updateNameById(ServiceItemsDTO serviceItemsDTO) {
+        try {
+            serviceItemsMapper.updateNameById(serviceItemsDTO);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ReturnException(ErrorEnum.Fail,null);
+        }
+        return new ReturnException(ErrorEnum.SUCCESS,null);
+    }
+
+    @Override
+    public ServiceItemsResultDTO getProjectById(ServiceItemsDTO serviceItemsDTO) {
+        return serviceItemsMapper.getProjectById(serviceItemsDTO);
+    }
+
+    @Override
+    public Object deleteProjectById(ServiceItemsDTO serviceItemsDTO) {
+        try {
+            serviceItemsMapper.deleteProjectById(serviceItemsDTO);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ReturnException(ErrorEnum.Fail,null);
+        }
+        return new ReturnException(ErrorEnum.SUCCESS,null);
+    }
 }

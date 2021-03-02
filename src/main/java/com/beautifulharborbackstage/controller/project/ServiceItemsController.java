@@ -52,4 +52,26 @@ public class ServiceItemsController {
     public Object addServiceItem(@RequestBody ServiceItemsDTO serviceItemsDTO){
         return serviceItemsService.addServiceItem(serviceItemsDTO);
     }
+
+    @ApiOperation("修改服务项目名称")
+    @PostMapping("/updateNameById")
+    @CrossOrigin
+    public Object updateNameById(@RequestBody ServiceItemsDTO serviceItemsDTO){
+        return serviceItemsService.updateNameById(serviceItemsDTO);
+    }
+
+
+    @ApiOperation("项目信息回显")
+    @PostMapping("/getProjectById")
+    @CrossOrigin
+    public Object getProjectById(@RequestBody ServiceItemsDTO serviceItemsDTO){
+        return serviceItemsService.getProjectById(serviceItemsDTO);
+    }
+
+    @ApiOperation("项目信息删除")
+    @PostMapping("/deleteProjectById")
+    @CrossOrigin
+    public Object deleteProjectById(@RequestBody ServiceItemsDTO serviceItemsDTO){
+        return serviceItemsService.deleteProjectById(serviceItemsDTO);
+    }
 }

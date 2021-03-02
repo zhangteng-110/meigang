@@ -66,4 +66,44 @@
                 (#{projectName}, #{sex},#{isClose})
             </if>
     </insert>
+
+    <update id="updateNameById" parameterType="com.beautifulharborbackstage.pojo.dto.ServiceItemsDTO" >
+        UPDATE
+        service_items
+        SET
+        <if test="projectName != null and projectName != ''">
+            projectName = #{projectName}
+        </if>
+        <where>
+            <if test="projectIds != null">
+                projectId in
+                <foreach item="projectId" index="index" collection="projectIds" open="(" separator="," close=")">
+                    #{projectId}
+                </foreach>
+            </if>
+        </where>
+    </update>
+
+    <select id="getProjectById" resultMap="ServiceItemsResultDTO" parameterType="com.beautifulharborbackstage.pojo.dto.ServiceItemsDTO">
+        SELECT
+        projectId,projectName,isClose,sex
+        FROM service_items
+        <where>
+            <if test="projectId != null">
+                projectId = #{projectId}
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteProjectById" parameterType="com.beautifulharborbackstage.pojo.dto.ServiceItemsDTO">
+        delete from service_items
+        <where>
+            <if test="projectIds != null">
+                projectId in
+                <foreach item="projectId" index="index" collection="projectIds" open="(" separator="," close=")">
+                    #{projectId}
+                </foreach>
+            </if>
+        </where>
+    </delete>
 </mapper>

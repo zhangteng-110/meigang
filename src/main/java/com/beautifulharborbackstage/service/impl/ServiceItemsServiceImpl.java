@@ -19,4 +19,10 @@ public interface ServiceItemsServiceImpl {
     Object updateStatusById(ServiceItemsDTO serviceItemsDTO);
 
     Object addServiceItem(ServiceItemsDTO serviceItemsDTO);
+
+    Object updateNameById(ServiceItemsDTO serviceItemsDTO);
+
+    ServiceItemsResultDTO getProjectById(ServiceItemsDTO serviceItemsDTO);
+
+    Object deleteProjectById(ServiceItemsDTO serviceItemsDTO);
 }

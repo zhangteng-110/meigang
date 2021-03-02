@@ -21,4 +21,10 @@ public interface ServiceItemsMapper {
     void updateStatusById(ServiceItemsDTO serviceItemsDTO);
 
     void addServiceItem(ServiceItemsDTO serviceItemsDTO);
+
+    void updateNameById(ServiceItemsDTO serviceItemsDTO);
+
+    ServiceItemsResultDTO getProjectById(ServiceItemsDTO serviceItemsDTO);
+
+    void deleteProjectById(ServiceItemsDTO serviceItemsDTO);
 }
