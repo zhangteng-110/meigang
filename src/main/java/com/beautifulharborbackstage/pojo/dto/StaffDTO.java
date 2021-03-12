@@ -32,4 +32,5 @@ public class StaffDTO {
     private String roleName;
     private int roleId;
     private int status;
+    private int storefrontId;
 }

@@ -19,6 +19,8 @@
         <result column="roleName" property="roleName" jdbcType="VARCHAR" />
         <result column="roleId" property="roleId" jdbcType="BIGINT" />
         <result column="status" property="status" jdbcType="BIGINT" />
+        <result column="storefrontId" property="storefrontId" jdbcType="BIGINT" />
+        <result column="storefrontName" property="storefrontName" jdbcType="VARCHAR" />
     </resultMap>
 
     <sql id="StaffDTO_List" >
@@ -53,8 +55,8 @@
 
     <select id="selectStaffById" parameterType="java.lang.Integer" resultMap="StaffReturnResultDTO">
         SELECT
-        <include refid="StaffDTO_List" />,r.roleId,r.roleName
-        FROM staff s join role r on s.staffPositionId = r.roleId
+        s.staffId , s.accountNumber, s.password , s.staffCode ,s.staffName,s.staffSex,s.phone,s.startDate,s.endDate,s.salary,s.status,r.roleId,r.roleName,t.storefrontName,t.storefrontId
+        FROM staff s join role r on s.staffPositionId = r.roleId left join storefront t on s.storefrontId = t.storefrontId
         <where>
             1 = 1
             <if test="staffId != null">
@@ -76,9 +78,9 @@
     <insert id="staffRegister" parameterType="com.beautifulharborbackstage.pojo.dto.StaffDTO" >
         INSERT INTO
             staff
-            (staffSex, phone, staffName, startDate, staffCode ,salary,staffPositionId)
+            (staffSex, phone, staffName, startDate, staffCode ,salary,staffPositionId,storefrontId)
         VALUES
-            (#{staffSex},#{phone},#{staffName},#{startDate},#{staffCode},#{salary},#{staffPositionId})
+            (#{staffSex},#{phone},#{staffName},#{startDate},#{staffCode},#{salary},#{staffPositionId},#{storefrontId})
     </insert>
 
     <update id="updateStaffDetail" parameterType="com.beautifulharborbackstage.pojo.dto.StaffDTO" >
@@ -102,6 +104,9 @@
         </if>
         <if test="staffPositionId != null">
             staffPositionId = #{staffPositionId}
+        </if>
+        <if test="storefrontId != null">
+            storefrontId = #{storefrontId}
         </if>
         <where>
             staffId = #{staffId}

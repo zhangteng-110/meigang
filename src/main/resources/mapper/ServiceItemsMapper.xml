@@ -72,15 +72,21 @@
         service_items
         SET
         <if test="projectName != null and projectName != ''">
-            projectName = #{projectName}
+            projectName = #{projectName},
+        </if>
+        <if test="sex != null">
+            sex = #{sex}
         </if>
         <where>
-            <if test="projectIds != null">
-                projectId in
-                <foreach item="projectId" index="index" collection="projectIds" open="(" separator="," close=")">
-                    #{projectId}
-                </foreach>
+            <if test="projectId != null">
+                projectId = #{projectId}
             </if>
+<!--            <if test="projectIds != null">-->
+<!--                projectId in-->
+<!--                <foreach item="projectId" index="index" collection="projectIds" open="(" separator="," close=")">-->
+<!--                    #{projectId}-->
+<!--                </foreach>-->
+<!--            </if>-->
         </where>
     </update>
 

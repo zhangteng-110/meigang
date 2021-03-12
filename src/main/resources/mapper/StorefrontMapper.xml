@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.beautifulharborbackstage.dao.mapper.StorefrontMapper" >
+    <resultMap id="StorefrontResultDTO" type="com.beautifulharborbackstage.pojo.dto.StorefrontResultDTO" >
+        <id column="storefrontId" property="storefrontId" jdbcType="BIGINT" />
+        <result column="storefrontName" property="storefrontName" jdbcType="VARCHAR" />
+        <result column="storefrontAddress" property="storefrontAddress" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="startDate" property="startDate" jdbcType="DATE" />
+        <result column="endDate" property="endDate" jdbcType="DATE" />
+    </resultMap>
+
+    <sql id="Storefront_List" >
+        storefrontId,storefrontName,storefrontAddress,startDate,endDate,status
+    </sql>
+
+    <select id="getAllStorefront" resultMap="StorefrontResultDTO">
+        SELECT
+        storefrontId,storefrontName,status
+        FROM storefront
+    </select>
+
+    <select id="getStorefrontById" resultMap="StorefrontResultDTO" parameterType="com.beautifulharborbackstage.pojo.dto.StorefrontDTO">
+        SELECT
+        storefrontId,storefrontName,storefrontAddress
+        FROM storefront
+        <where>
+            <if test="storefrontId != null">
+                storefrontId = #{storefrontId}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateStatusById" parameterType="com.beautifulharborbackstage.pojo.dto.StorefrontDTO" >
+        UPDATE
+        storefront
+        SET
+        <if test="status != null">
+            status = #{status}
+        </if>
+        <where>
+            <if test="storefrontIds != null">
+                storefrontId in
+                <foreach item="storefrontId" index="index" collection="storefrontIds" open="(" separator="," close=")">
+                    #{storefrontId}
+                </foreach>
+            </if>
+        </where>
+    </update>
+
+    <insert id="addStorefront" parameterType="com.beautifulharborbackstage.pojo.dto.StorefrontDTO" >
+        INSERT INTO
+            storefront
+            (storefrontName,storefrontAddress,startDate,endDate,status)
+        VALUES
+            <if test="storefrontName != null and storefrontName != '' and storefrontAddress != null and storefrontAddress != ''">
+                (#{storefrontName}, #{storefrontAddress},#{startDate},#{endDate},#{status})
+            </if>
+    </insert>
+
+    <update id="updateStorefrontById" parameterType="com.beautifulharborbackstage.pojo.dto.StorefrontDTO" >
+        UPDATE
+        storefront
+        SET
+        <if test="storefrontName != null and storefrontName != ''">
+            storefrontName = #{storefrontName},
+        </if>
+        <if test="storefrontAddress != null and storefrontAddress != ''">
+            storefrontAddress = #{storefrontAddress}
+        </if>
+        <where>
+            <if test="storefrontId != null">
+                storefrontId = #{storefrontId}
+            </if>
+        </where>
+    </update>
+
+    <select id="getStorefront" resultMap="StorefrontResultDTO">
+        SELECT
+        storefrontId,storefrontName
+        FROM storefront
+        <where>
+            status = 0
+        </where>
+    </select>
+
+    <delete id="deleteStorefrontById" parameterType="com.beautifulharborbackstage.pojo.dto.StorefrontDTO">
+        delete from storefront
+        <where>
+            <if test="storefrontIds != null">
+                storefrontId in
+                <foreach item="storefrontId" index="index" collection="storefrontIds" open="(" separator="," close=")">
+                    #{storefrontId}
+                </foreach>
+            </if>
+        </where>
+    </delete>
+</mapper>

@@ -53,7 +53,7 @@ public class ServiceItemsController {
         return serviceItemsService.addServiceItem(serviceItemsDTO);
     }
 
-    @ApiOperation("修改服务项目名称")
+    @ApiOperation("修改服务项目")
     @PostMapping("/updateNameById")
     @CrossOrigin
     public Object updateNameById(@RequestBody ServiceItemsDTO serviceItemsDTO){

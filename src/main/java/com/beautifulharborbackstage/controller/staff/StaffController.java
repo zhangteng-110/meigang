@@ -24,7 +24,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/staff")
 @Api("员工接口Api")
-public class staffController {
+public class StaffController {
 
     @Autowired
     private staffServiceImpl staffServiceImpl;

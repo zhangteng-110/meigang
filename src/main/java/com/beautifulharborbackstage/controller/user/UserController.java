@@ -2,7 +2,6 @@ package com.beautifulharborbackstage.controller.user;
 
 import com.beautifulharborbackstage.pojo.dto.UserDTO;
 import com.beautifulharborbackstage.pojo.po.UserPO;
-import com.beautifulharborbackstage.service.impl.staffServiceImpl;
 import com.beautifulharborbackstage.service.impl.userServiceImpl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -22,7 +21,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 @Api("用户接口Api")
-public class userController {
+public class UserController {
 
     @Autowired
     private userServiceImpl userServiceImpl;
