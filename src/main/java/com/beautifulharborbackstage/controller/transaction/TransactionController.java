@@ -68,4 +68,12 @@ public class TransactionController {
         PageInfo<?> info = new PageInfo<>(list);
         return info;
     }
+
+    @ApiOperation("排行榜")
+    @GetMapping("/selectSlotStorefront")
+    @CrossOrigin
+    public Object selectSlotStorefront(){
+        return transactionServiceImpl.selectSlotStorefront();
+    }
+
 }

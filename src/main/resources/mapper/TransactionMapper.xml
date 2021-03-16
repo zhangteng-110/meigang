@@ -47,5 +47,10 @@
             (#{transactionDate},#{transactionMoney},#{transactionStatus},#{userId},#{transactionStorefront})
     </insert>
 
-
+    <select id="selectSlotStorefront" resultMap="TransactionResultDTO" >
+        SELECT
+        sum(transactionMoney) transactionMoney,transactionStorefront
+        FROM transaction
+        where 1 = 1 and transactionStatus = 1 group by transactionStorefront order by transactionMoney desc
+    </select>
 </mapper>

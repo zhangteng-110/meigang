@@ -47,11 +47,19 @@ public class TransactionService implements TransactionServiceImpl {
     public Object selectTomorrowTransactionMoney() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
-        calendar.add(Calendar.DATE, -1);    //得到前一个天
+        calendar.add(Calendar.DATE, -1);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);//得到前一个天
         Date startDate = calendar.getTime();
         TransactionDTO transactionDTO = new TransactionDTO();
         transactionDTO.setStartDate(startDate);
-        transactionDTO.setEndDate(new Date());
+        calendar.setTime(new Date());
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);//得到前一个天
+        Date endDate = calendar.getTime();
+        transactionDTO.setEndDate(endDate);
         Object sum = transactionMapper.selectTransactionMoney(transactionDTO);
         return sum;
     }
@@ -95,5 +103,10 @@ public class TransactionService implements TransactionServiceImpl {
     @Override
     public List<TransactionResultDTO> selectTransactionList(TransactionDTO transactionDTO) {
         return transactionMapper.selectTransactionList(transactionDTO);
+    }
+
+    @Override
+    public List<TransactionResultDTO> selectSlotStorefront() {
+        return transactionMapper.selectSlotStorefront();
     }
 }

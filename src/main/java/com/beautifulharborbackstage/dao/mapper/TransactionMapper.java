@@ -19,4 +19,6 @@ public interface TransactionMapper {
     Object selectTransactionMoney(TransactionDTO transactionDTO);
 
     List<TransactionResultDTO> selectTransactionList(TransactionDTO transactionDTO);
+
+    List<TransactionResultDTO> selectSlotStorefront();
 }

@@ -20,4 +20,6 @@ public interface TransactionServiceImpl {
     Object selectEveryYearMoney();
 
     List<TransactionResultDTO> selectTransactionList(TransactionDTO transactionDTO);
+
+    List<TransactionResultDTO> selectSlotStorefront();
 }
