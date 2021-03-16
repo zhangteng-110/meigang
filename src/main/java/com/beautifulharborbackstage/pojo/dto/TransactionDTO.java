@@ -26,4 +26,5 @@ public class TransactionDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
     private String realName;
+    private String transactionStorefront;
 }

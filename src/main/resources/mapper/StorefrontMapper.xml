@@ -8,9 +8,11 @@
         <id column="storefrontId" property="storefrontId" jdbcType="BIGINT" />
         <result column="storefrontName" property="storefrontName" jdbcType="VARCHAR" />
         <result column="storefrontAddress" property="storefrontAddress" jdbcType="VARCHAR" />
+        <result column="detailedAddress" property="detailedAddress" jdbcType="VARCHAR" />
         <result column="status" property="status" jdbcType="INTEGER" />
         <result column="startDate" property="startDate" jdbcType="DATE" />
         <result column="endDate" property="endDate" jdbcType="DATE" />
+        <result column="addressCode" property="addressCode" jdbcType="VARCHAR" />
     </resultMap>
 
     <sql id="Storefront_List" >
@@ -25,7 +27,7 @@
 
     <select id="getStorefrontById" resultMap="StorefrontResultDTO" parameterType="com.beautifulharborbackstage.pojo.dto.StorefrontDTO">
         SELECT
-        storefrontId,storefrontName,storefrontAddress
+        storefrontId,storefrontName,storefrontAddress,detailedAddress,addressCode
         FROM storefront
         <where>
             <if test="storefrontId != null">
@@ -54,10 +56,10 @@
     <insert id="addStorefront" parameterType="com.beautifulharborbackstage.pojo.dto.StorefrontDTO" >
         INSERT INTO
             storefront
-            (storefrontName,storefrontAddress,startDate,endDate,status)
+            (storefrontName,storefrontAddress,detailedAddress,startDate,endDate,status,addressCode)
         VALUES
-            <if test="storefrontName != null and storefrontName != '' and storefrontAddress != null and storefrontAddress != ''">
-                (#{storefrontName}, #{storefrontAddress},#{startDate},#{endDate},#{status})
+            <if test="storefrontName != null and storefrontName != '' and storefrontAddress != null and storefrontAddress != '' and storefrontAddress != null and storefrontAddress != ''">
+                (#{storefrontName}, #{storefrontAddress}, #{detailedAddress},#{startDate},#{endDate},#{status},#{addressCode})
             </if>
     </insert>
 
@@ -69,7 +71,13 @@
             storefrontName = #{storefrontName},
         </if>
         <if test="storefrontAddress != null and storefrontAddress != ''">
-            storefrontAddress = #{storefrontAddress}
+            storefrontAddress = #{storefrontAddress},
+        </if>
+        <if test="detailedAddress != null and detailedAddress != ''">
+            detailedAddress = #{detailedAddress},
+        </if>
+        <if test="addressCode != null and addressCode != ''">
+            addressCode = #{addressCode}
         </if>
         <where>
             <if test="storefrontId != null">

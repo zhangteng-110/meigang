@@ -151,6 +151,7 @@ public class UserService implements userServiceImpl {
         consumptionDTO.setConsumptionStatus(1);
         consumptionDTO.setIntegral(userDTO.getMoney());
         consumptionDTO.setProjectId(userDTO.getProjectId());
+        consumptionDTO.setConsumptionStorefront(userDTO.getConsumptionStorefront());
         userDTO.setIntegral(userPO.getIntegral()+userDTO.getMoney());
         userDTO.setMoney(userPO.getMoney()-userDTO.getMoney());
         userMapper.consumptionChange(userDTO);
@@ -167,10 +168,11 @@ public class UserService implements userServiceImpl {
         transactionDTO.setTransactionDate(new Date());
         transactionDTO.setTransactionStatus(1);
         transactionDTO.setTransactionMoney(userDTO.getMoney());
+        transactionDTO.setTransactionStorefront(userDTO.getConsumptionStorefront());
         userDTO.setMoney(userPO.getMoney()+userDTO.getMoney());
         userMapper.consumptionChange(userDTO);
         transactionMapper.addTransaction(transactionDTO);
-        return new ReturnException(ErrorEnum.CONSUMPTION_SUCCESS,null);
+        return new ReturnException(ErrorEnum.RECHARGE_SUCCESS,null);
     }
 
     @Override

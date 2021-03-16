@@ -10,10 +10,11 @@
         <result column="transactionMoney" property="transactionMoney" jdbcType="BIGINT" />
         <result column="userId" property="userId" jdbcType="BIGINT" />
         <result column="transactionStatus" property="transactionStatus" jdbcType="TINYINT" />
+        <result column="transactionStorefront" property="transactionStorefront" jdbcType="VARCHAR" />
     </resultMap>
 
     <sql id="Transaction_List" >
-        transactionId , transactionDate, transactionMoney , transactionStatus ,userId,realName
+        transactionId , transactionDate, transactionMoney , transactionStatus ,userId,realName,transactionStorefront
     </sql>
 
     <select id="selectTransactionMoney" resultType="java.lang.Object" parameterType="com.beautifulharborbackstage.pojo.dto.TransactionDTO">
@@ -25,7 +26,7 @@
 
     <select id="selectTransactionList" resultType="com.beautifulharborbackstage.pojo.dto.TransactionResultDTO" parameterType="com.beautifulharborbackstage.pojo.dto.TransactionDTO">
         SELECT
-        transactionId , transactionDate, transactionMoney , transactionStatus ,t.userId,t2.realName
+        transactionId , transactionDate, transactionMoney , transactionStatus ,t.userId,t2.realName,transactionStorefront
         FROM transaction t LEFT JOIN (select ud.realName,u.userId from user u join user_details ud on u.userCode = ud.userCode) t2 on t.userid=t2.userId
         <where>
             1 = 1
@@ -41,9 +42,9 @@
     <insert id="addTransaction" parameterType="com.beautifulharborbackstage.pojo.dto.TransactionDTO">
         INSERT INTO
             transaction
-            (transactionDate,transactionMoney,transactionStatus,userId)
+            (transactionDate,transactionMoney,transactionStatus,userId,transactionStorefront)
         VALUES
-            (#{transactionDate},#{transactionMoney},#{transactionStatus},#{userId})
+            (#{transactionDate},#{transactionMoney},#{transactionStatus},#{userId},#{transactionStorefront})
     </insert>
 
 

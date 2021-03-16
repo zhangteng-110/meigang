@@ -28,5 +28,5 @@ public class ConsumptionResultDTO {
     private int integral;
     private String realName;
     private String projectName;
-
+    private String consumptionStorefront;
 }

@@ -42,8 +42,8 @@
 
     <select id="selectAllStaff" parameterType="com.beautifulharborbackstage.pojo.dto.UserDTO" resultMap="StaffReturnResultDTO">
         SELECT
-        <include refid="StaffDTO_List" />,r.roleName
-        FROM staff s left join role r on s.staffPositionId = r.roleId
+        staffId , accountNumber, password , staffCode ,staffName,staffSex,phone,s.startDate,s.endDate,salary,s.status,r.roleName,s2.storefrontName
+        FROM staff s left join role r on s.staffPositionId = r.roleId left join storefront s2 on s.storefrontId = s2.storefrontId
         <where>
             1 = 1
             <if test="staffName != null and staffName != ''">

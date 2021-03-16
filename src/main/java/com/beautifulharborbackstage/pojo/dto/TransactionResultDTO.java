@@ -22,4 +22,5 @@ public class TransactionResultDTO {
     private int transactionMoney;
     private int transactionStatus;
     private String realName;
+    private String transactionStorefront;
 }

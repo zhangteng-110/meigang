@@ -18,10 +18,12 @@ public class StorefrontDTO {
    private int storefrontId;
    private String storefrontName;
    private String storefrontAddress;
+   private String detailedAddress;
    @DateTimeFormat(pattern = "yyyy-MM-dd")
    private Date startDate;
    @DateTimeFormat(pattern = "yyyy-MM-dd")
    private Date endDate;
    private int status;
    private int[] storefrontIds;
+   private String addressCode;
 }
