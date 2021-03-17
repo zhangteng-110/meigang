@@ -1,46 +1,24 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : test01
- Source Server Type    : MySQL
- Source Server Version : 80022
- Source Host           : localhost:3306
- Source Schema         : test01
-
- Target Server Type    : MySQL
- Target Server Version : 80022
- File Encoding         : 65001
-
- Date: 12/01/2021 14:52:47
-*/
-
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for transaction
--- ----------------------------
-DROP TABLE IF EXISTS `transaction`;
-CREATE TABLE `transaction`  (
-  `transactionId` int(0) NOT NULL AUTO_INCREMENT COMMENT '交易id',
-  `transactionDate` datetime(0) NULL DEFAULT NULL COMMENT '交易日期',
-  `transactionMoney` bigint(0) NULL DEFAULT NULL COMMENT '交易金额',
-  `transactionStatus` tinyint(0) NULL DEFAULT NULL COMMENT '交易状态',
-  `userId` int(0) NULL DEFAULT NULL COMMENT '用户id',
-  PRIMARY KEY (`transactionId`) USING BTREE,
-  INDEX `userId`(`userId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of transaction
--- ----------------------------
-INSERT INTO `transaction` VALUES (8, '2020-12-30 16:58:30', 3000, 1, 15);
-INSERT INTO `transaction` VALUES (9, '2020-12-30 16:59:04', 1500, 1, 20);
-INSERT INTO `transaction` VALUES (10, '2021-01-04 09:18:38', 2000, 1, 23);
-INSERT INTO `transaction` VALUES (11, '2021-01-04 13:55:30', 500, 1, 34);
-INSERT INTO `transaction` VALUES (12, '2021-01-04 14:01:48', 1000, 1, 25);
-INSERT INTO `transaction` VALUES (13, '2021-01-06 09:58:43', 1500, 1, 24);
-INSERT INTO `transaction` VALUES (14, '2021-01-08 09:31:22', 2000, 1, 31);
-INSERT INTO `transaction` VALUES (15, '2021-01-11 15:35:07', 1000, 1, 1);
-
-SET FOREIGN_KEY_CHECKS = 1;
+INSERT INTO `transaction`(`transactionId`, `transactionDate`, `transactionMoney`, `transactionStatus`, `userId`, `transactionStorefront`) VALUES (8, '2020-12-30 16:58:30', 3000, 1, 15, '美港张北县1店');
+INSERT INTO `transaction`(`transactionId`, `transactionDate`, `transactionMoney`, `transactionStatus`, `userId`, `transactionStorefront`) VALUES (9, '2020-12-30 16:59:04', 1500, 1, 20, '美港上海1店');
+INSERT INTO `transaction`(`transactionId`, `transactionDate`, `transactionMoney`, `transactionStatus`, `userId`, `transactionStorefront`) VALUES (10, '2021-01-04 09:18:38', 2000, 1, 23, '美港张北县1店');
+INSERT INTO `transaction`(`transactionId`, `transactionDate`, `transactionMoney`, `transactionStatus`, `userId`, `transactionStorefront`) VALUES (11, '2021-01-04 13:55:30', 500, 1, 34, '美港张北县2店');
+INSERT INTO `transaction`(`transactionId`, `transactionDate`, `transactionMoney`, `transactionStatus`, `userId`, `transactionStorefront`) VALUES (12, '2021-01-04 14:01:48', 1000, 1, 25, '美港深圳1店');
+INSERT INTO `transaction`(`transactionId`, `transactionDate`, `transactionMoney`, `transactionStatus`, `userId`, `transactionStorefront`) VALUES (13, '2021-01-06 09:58:43', 1500, 1, 24, '美港上海1店');
+INSERT INTO `transaction`(`transactionId`, `transactionDate`, `transactionMoney`, `transactionStatus`, `userId`, `transactionStorefront`) VALUES (14, '2021-01-08 09:31:22', 2000, 1, 31, '美港宿迁1店');
+INSERT INTO `transaction`(`transactionId`, `transactionDate`, `transactionMoney`, `transactionStatus`, `userId`, `transactionStorefront`) VALUES (15, '2021-01-11 15:35:07', 1000, 1, 1, '美港张北县1店');
+INSERT INTO `transaction`(`transactionId`, `transactionDate`, `transactionMoney`, `transactionStatus`, `userId`, `transactionStorefront`) VALUES (16, '2021-01-12 09:59:55', 2000, 1, 35, '美港石家庄1店');
+INSERT INTO `transaction`(`transactionId`, `transactionDate`, `transactionMoney`, `transactionStatus`, `userId`, `transactionStorefront`) VALUES (17, '2021-01-12 10:01:53', 3000, 1, 36, '美港宿迁1店');
+INSERT INTO `transaction`(`transactionId`, `transactionDate`, `transactionMoney`, `transactionStatus`, `userId`, `transactionStorefront`) VALUES (18, '2021-02-22 09:52:55', 980, 1, 34, '美港张北县2店');
+INSERT INTO `transaction`(`transactionId`, `transactionDate`, `transactionMoney`, `transactionStatus`, `userId`, `transactionStorefront`) VALUES (19, '2021-02-23 16:32:53', 1651, 1, 23, '美港张北县1店');
+INSERT INTO `transaction`(`transactionId`, `transactionDate`, `transactionMoney`, `transactionStatus`, `userId`, `transactionStorefront`) VALUES (20, '2021-02-23 16:33:42', 1691, 1, 24, '美港上海1店');
+INSERT INTO `transaction`(`transactionId`, `transactionDate`, `transactionMoney`, `transactionStatus`, `userId`, `transactionStorefront`) VALUES (21, '2021-02-24 15:32:09', 1671, 1, 20, '美港上海1店');
+INSERT INTO `transaction`(`transactionId`, `transactionDate`, `transactionMoney`, `transactionStatus`, `userId`, `transactionStorefront`) VALUES (22, '2021-02-26 15:32:56', 1191, 1, 34, '美港张北县2店');
+INSERT INTO `transaction`(`transactionId`, `transactionDate`, `transactionMoney`, `transactionStatus`, `userId`, `transactionStorefront`) VALUES (23, '2021-02-26 15:41:38', 500, 1, 25, '美港深圳1店');
+INSERT INTO `transaction`(`transactionId`, `transactionDate`, `transactionMoney`, `transactionStatus`, `userId`, `transactionStorefront`) VALUES (24, '2021-03-01 09:24:15', 2000, 1, 26, '美港天津1店');
+INSERT INTO `transaction`(`transactionId`, `transactionDate`, `transactionMoney`, `transactionStatus`, `userId`, `transactionStorefront`) VALUES (25, '2021-03-02 14:23:42', 500, 1, 34, '美港张北县2店');
+INSERT INTO `transaction`(`transactionId`, `transactionDate`, `transactionMoney`, `transactionStatus`, `userId`, `transactionStorefront`) VALUES (26, '2021-03-04 16:46:51', 1000, 1, 37, '美港石家庄2店');
+INSERT INTO `transaction`(`transactionId`, `transactionDate`, `transactionMoney`, `transactionStatus`, `userId`, `transactionStorefront`) VALUES (27, '2021-03-04 16:53:31', 1000, 1, 38, '美港上海2店');
+INSERT INTO `transaction`(`transactionId`, `transactionDate`, `transactionMoney`, `transactionStatus`, `userId`, `transactionStorefront`) VALUES (28, '2021-03-04 16:53:57', 2000, 1, 39, '美港上海2店');
+INSERT INTO `transaction`(`transactionId`, `transactionDate`, `transactionMoney`, `transactionStatus`, `userId`, `transactionStorefront`) VALUES (29, '2021-03-15 09:40:17', 1000, 1, 21, '美港上海1店');
+INSERT INTO `transaction`(`transactionId`, `transactionDate`, `transactionMoney`, `transactionStatus`, `userId`, `transactionStorefront`) VALUES (30, '2021-03-16 15:23:27', 200, 1, 1, '美港张北县1店');
+INSERT INTO `transaction`(`transactionId`, `transactionDate`, `transactionMoney`, `transactionStatus`, `userId`, `transactionStorefront`) VALUES (31, '2021-03-16 18:40:22', 500, 1, 25, '美港深圳1店');

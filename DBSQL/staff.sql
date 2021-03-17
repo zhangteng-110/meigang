@@ -1,51 +1,10 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : test01
- Source Server Type    : MySQL
- Source Server Version : 80022
- Source Host           : localhost:3306
- Source Schema         : test01
-
- Target Server Type    : MySQL
- Target Server Version : 80022
- File Encoding         : 65001
-
- Date: 12/01/2021 14:52:37
-*/
-
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for staff
--- ----------------------------
-DROP TABLE IF EXISTS `staff`;
-CREATE TABLE `staff`  (
-  `staffId` int(0) NOT NULL AUTO_INCREMENT COMMENT '员工id',
-  `accountNumber` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '账号',
-  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '密码',
-  `staffName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '员工名字',
-  `staffSex` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '员工性别',
-  `phone` varchar(11) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '员工手机号',
-  `staffCode` varchar(18) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '员工证件号',
-  `staffPositionId` int(0) NULL DEFAULT NULL COMMENT '员工职位id',
-  `startDate` date NULL DEFAULT NULL COMMENT '工作日期',
-  `endDate` date NULL DEFAULT NULL COMMENT '离职日期',
-  `salary` bigint(0) NULL DEFAULT NULL COMMENT '薪资',
-  `status` int(0) NULL DEFAULT NULL COMMENT '员工状态(1.在职；0.离职)',
-  PRIMARY KEY (`staffId`) USING BTREE,
-  INDEX `username`(`accountNumber`) USING BTREE,
-  INDEX `password`(`password`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of staff
--- ----------------------------
-INSERT INTO `staff` VALUES (1, 'admin', 'admin', '美港管理员', NULL, NULL, NULL, 1, '2020-12-17', NULL, NULL, 1);
-INSERT INTO `staff` VALUES (2, 'zhangteng', 'zhangteng', '张腾', 'MAN', '17606103342', '13072320001121381X', 5, '2020-12-25', NULL, 5500, 1);
-INSERT INTO `staff` VALUES (3, NULL, NULL, '王鹏', 'MAN', '15632145698', '130723199511203915', 5, '2021-01-08', NULL, 4500, 1);
-INSERT INTO `staff` VALUES (4, NULL, NULL, '张磊', 'MAN', '16932372680', '14072319961021391X', 7, '2021-01-08', NULL, 2000, 1);
-INSERT INTO `staff` VALUES (5, NULL, NULL, '李志飞', 'MAN', '15836376761', '148723188912213912', 5, '2021-01-11', NULL, 4500, 1);
-
-SET FOREIGN_KEY_CHECKS = 1;
+INSERT INTO `staff`(`staffId`, `accountNumber`, `password`, `staffName`, `staffSex`, `phone`, `staffCode`, `staffPositionId`, `startDate`, `endDate`, `salary`, `status`, `storefrontId`) VALUES (1, 'admin', 'admin', '美港管理员', NULL, NULL, NULL, 1, '2020-12-17', NULL, NULL, 1, 1);
+INSERT INTO `staff`(`staffId`, `accountNumber`, `password`, `staffName`, `staffSex`, `phone`, `staffCode`, `staffPositionId`, `startDate`, `endDate`, `salary`, `status`, `storefrontId`) VALUES (2, 'zhangteng', 'zhangteng', '张腾', 'MAN', '17606103342', '13072320001121381X', 5, '2020-12-25', NULL, 5500, 1, 1);
+INSERT INTO `staff`(`staffId`, `accountNumber`, `password`, `staffName`, `staffSex`, `phone`, `staffCode`, `staffPositionId`, `startDate`, `endDate`, `salary`, `status`, `storefrontId`) VALUES (3, NULL, NULL, '王鹏', 'MAN', '15632145698', '130723199511203915', 5, '2021-01-08', NULL, 4500, 1, 2);
+INSERT INTO `staff`(`staffId`, `accountNumber`, `password`, `staffName`, `staffSex`, `phone`, `staffCode`, `staffPositionId`, `startDate`, `endDate`, `salary`, `status`, `storefrontId`) VALUES (4, NULL, NULL, '张磊', 'MAN', '16932372680', '14072319961021391X', 7, '2021-01-08', NULL, 2000, 1, 1);
+INSERT INTO `staff`(`staffId`, `accountNumber`, `password`, `staffName`, `staffSex`, `phone`, `staffCode`, `staffPositionId`, `startDate`, `endDate`, `salary`, `status`, `storefrontId`) VALUES (5, NULL, NULL, '李志飞', 'MAN', '15836376761', '148723188912213912', 5, '2021-01-11', NULL, 4500, 1, 4);
+INSERT INTO `staff`(`staffId`, `accountNumber`, `password`, `staffName`, `staffSex`, `phone`, `staffCode`, `staffPositionId`, `startDate`, `endDate`, `salary`, `status`, `storefrontId`) VALUES (6, NULL, NULL, '赵云', 'MAN', '18956631124', '145322000112198134', 6, '2021-02-26', NULL, 3000, 1, 1);
+INSERT INTO `staff`(`staffId`, `accountNumber`, `password`, `staffName`, `staffSex`, `phone`, `staffCode`, `staffPositionId`, `startDate`, `endDate`, `salary`, `status`, `storefrontId`) VALUES (7, NULL, NULL, '张飞', 'WEMAN', '18127256987', '150723199911214567', 6, '2021-03-04', NULL, 3000, 1, 1);
+INSERT INTO `staff`(`staffId`, `accountNumber`, `password`, `staffName`, `staffSex`, `phone`, `staffCode`, `staffPositionId`, `startDate`, `endDate`, `salary`, `status`, `storefrontId`) VALUES (8, NULL, NULL, '关羽', 'MAN', '15832372673', '14072620001121381X', 7, '2021-03-11', NULL, 2000, 1, 1);
+INSERT INTO `staff`(`staffId`, `accountNumber`, `password`, `staffName`, `staffSex`, `phone`, `staffCode`, `staffPositionId`, `startDate`, `endDate`, `salary`, `status`, `storefrontId`) VALUES (9, NULL, NULL, '孙尚香', 'WEMAN', '15834311322', '140724199610233815', 5, '2021-03-11', NULL, 4500, 1, 1);
+INSERT INTO `staff`(`staffId`, `accountNumber`, `password`, `staffName`, `staffSex`, `phone`, `staffCode`, `staffPositionId`, `startDate`, `endDate`, `salary`, `status`, `storefrontId`) VALUES (10, NULL, NULL, '刘备', 'MAN', '13483331121', '14012520001121381X', 4, '2021-03-17', NULL, 7000, 1, 4);

@@ -1,56 +1,52 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : test01
- Source Server Type    : MySQL
- Source Server Version : 80022
- Source Host           : localhost:3306
- Source Schema         : test01
-
- Target Server Type    : MySQL
- Target Server Version : 80022
- File Encoding         : 65001
-
- Date: 12/01/2021 14:52:03
-*/
-
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for consumption
--- ----------------------------
-DROP TABLE IF EXISTS `consumption`;
-CREATE TABLE `consumption`  (
-  `consumptionId` int(0) NOT NULL AUTO_INCREMENT COMMENT '消费记录id',
-  `consumptionDate` datetime(0) NULL DEFAULT NULL COMMENT '消费时间',
-  `consumptionMoney` bigint(0) NULL DEFAULT NULL COMMENT '消费金额',
-  `userId` tinyint(0) NULL DEFAULT NULL COMMENT '用户id',
-  `consumptionStatus` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '消费状态',
-  `integral` bigint(0) NULL DEFAULT NULL COMMENT '积分',
-  `projectId` tinyint(0) NULL DEFAULT NULL COMMENT '项目id',
-  PRIMARY KEY (`consumptionId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of consumption
--- ----------------------------
-INSERT INTO `consumption` VALUES (1, '2021-01-06 13:20:09', 20, 15, '1', 20, 1);
-INSERT INTO `consumption` VALUES (2, '2021-01-06 13:25:00', 299, 20, '1', 299, 2);
-INSERT INTO `consumption` VALUES (3, '2021-01-07 15:29:50', 499, 23, '1', 499, 4);
-INSERT INTO `consumption` VALUES (4, '2021-01-08 09:29:33', 289, 24, '1', 289, 2);
-INSERT INTO `consumption` VALUES (5, '2021-01-08 09:30:10', 20, 23, '1', 20, 3);
-INSERT INTO `consumption` VALUES (6, '2021-01-08 09:30:23', 30, 25, '1', 30, 1);
-INSERT INTO `consumption` VALUES (7, '2021-01-08 09:30:31', 20, 34, '1', 20, 2);
-INSERT INTO `consumption` VALUES (8, '2021-01-08 09:31:39', 599, 31, '1', 599, 3);
-INSERT INTO `consumption` VALUES (9, '2021-01-11 15:33:19', 289, 15, '1', 289, 1);
-INSERT INTO `consumption` VALUES (10, '2021-01-11 15:34:25', 20, 24, '1', 20, 2);
-INSERT INTO `consumption` VALUES (11, '2021-01-11 15:34:34', 20, 31, '1', 20, 2);
-INSERT INTO `consumption` VALUES (12, '2021-01-11 15:35:16', 189, 1, '1', 189, 3);
-INSERT INTO `consumption` VALUES (13, '2021-01-12 09:26:05', 30, 25, '1', 30, 3);
-INSERT INTO `consumption` VALUES (14, '2021-01-12 09:28:36', 30, 31, '1', 30, 2);
-INSERT INTO `consumption` VALUES (15, '2021-01-12 09:30:36', 30, 23, '1', 30, 3);
-INSERT INTO `consumption` VALUES (16, '2021-01-12 09:40:38', 30, 15, '1', 30, 2);
-INSERT INTO `consumption` VALUES (17, '2021-01-12 09:44:27', 30, 15, '1', 30, 2);
-
-SET FOREIGN_KEY_CHECKS = 1;
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (1, '2021-01-06 13:20:09', 20, 15, 1, 20, 1, '美港张北县1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (2, '2021-01-06 13:25:00', 299, 20, 1, 299, 2, '美港上海1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (3, '2021-01-07 15:29:50', 499, 23, 1, 499, 4, '美港张北县1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (4, '2021-01-08 09:29:33', 289, 24, 1, 289, 2, '美港上海1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (5, '2021-01-08 09:30:10', 20, 23, 1, 20, 3, '美港张北县1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (6, '2021-01-08 09:30:23', 30, 25, 1, 30, 1, '美港深圳1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (7, '2021-01-08 09:30:31', 20, 34, 1, 20, 2, '美港张北县2店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (8, '2021-01-08 09:31:39', 599, 31, 1, 599, 3, '美港宿迁1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (9, '2021-01-11 15:33:19', 289, 15, 1, 289, 1, '美港张北县1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (10, '2021-01-11 15:34:25', 20, 24, 1, 20, 2, '美港上海1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (11, '2021-01-11 15:34:34', 20, 31, 1, 20, 2, '美港宿迁1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (12, '2021-01-11 15:35:16', 189, 1, 1, 189, 3, '美港张北县1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (13, '2021-01-12 09:26:05', 30, 25, 1, 30, 3, '美港深圳1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (14, '2021-01-12 09:28:36', 30, 31, 1, 30, 2, '美港宿迁1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (15, '2021-01-12 09:30:36', 30, 23, 1, 30, 3, '美港张北县1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (16, '2021-01-12 09:40:38', 30, 15, 1, 30, 2, '美港张北县1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (17, '2021-01-12 09:44:27', 30, 15, 1, 30, 2, '美港张北县1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (18, '2021-02-19 14:18:05', 300, 23, 1, 300, 4, '美港张北县1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (19, '2021-02-19 14:18:24', 30, 20, 1, 30, 2, '美港上海1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (20, '2021-02-19 14:18:42', 30, 36, 1, 30, 3, '美港宿迁1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (21, '2021-02-19 14:18:52', 30, 35, 1, 30, 2, '美港石家庄1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (22, '2021-02-22 09:50:53', 300, 25, 1, 300, 5, '美港深圳1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (23, '2021-02-22 09:51:41', 20, 31, 1, 20, 2, '美港宿迁1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (24, '2021-02-23 16:32:21', 299, 15, 1, 299, 1, '美港张北县1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (25, '2021-02-23 16:33:07', 299, 23, 1, 299, 1, '美港张北县1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (26, '2021-02-23 16:33:52', 289, 24, 1, 289, 1, '美港上海1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (27, '2021-02-23 16:34:24', 289, 35, 1, 289, 1, '美港石家庄1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (28, '2021-02-23 16:34:37', 289, 35, 1, 289, 1, '美港石家庄1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (29, '2021-02-23 16:34:52', 489, 36, 1, 489, 5, '美港宿迁1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (30, '2021-02-24 14:48:07', 20, 35, 1, 20, 2, '美港石家庄1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (31, '2021-02-24 14:48:24', 399, 36, 1, 399, 4, '美港宿迁1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (32, '2021-02-24 14:48:54', 30, 23, 1, 30, 2, '美港张北县1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (33, '2021-02-26 15:28:26', 30, 24, 1, 30, 2, '美港上海1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (34, '2021-02-26 15:31:33', 289, 31, 1, 289, 1, '美港宿迁1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (35, '2021-02-26 15:31:49', 389, 36, 1, 389, 5, '美港宿迁1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (36, '2021-02-26 15:32:23', 30, 35, 1, 30, 2, '美港石家庄1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (37, '2021-02-26 15:32:47', 289, 34, 1, 289, 1, '美港张北县2店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (38, '2021-02-26 17:06:41', 98, 15, 1, 98, 6, '美港张北县1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (39, '2021-03-01 09:24:45', 189, 26, 1, 189, 6, '美港天津1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (40, '2021-03-02 14:22:41', 35, 26, 1, 35, 16, '美港天津1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (41, '2021-03-02 14:23:02', 35, 25, 1, 35, 16, '美港深圳1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (42, '2021-03-02 14:23:30', 35, 34, 1, 35, 13, '美港张北县2店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (43, '2021-03-04 16:47:05', 289, 37, 1, 289, 14, '美港石家庄2店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (44, '2021-03-04 16:54:16', 35, 38, 1, 35, 16, '美港上海2店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (45, '2021-03-04 16:54:31', 35, 39, 1, 35, 13, '美港上海2店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (46, '2021-03-15 09:40:34', 35, 21, 1, 35, 16, '美港上海1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (47, '2021-03-16 15:10:03', 35, 24, 1, 35, 16, '美港上海1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (49, '2021-03-17 13:43:55', 35, 32, 0, 0, 13, '美港张北县1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (50, '2021-03-17 13:59:16', 45, 22, 0, 0, 13, '美港北京1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (51, '2021-03-17 17:41:14', 35, 22, 1, 0, 16, '美港杭州1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (52, '2021-03-17 17:42:46', 35, 27, 1, 0, 16, '美港杭州1店');
+INSERT INTO `consumption`(`consumptionId`, `consumptionDate`, `consumptionMoney`, `userId`, `consumptionStatus`, `integral`, `projectId`, `consumptionStorefront`) VALUES (53, '2021-03-17 17:43:08', 389, 32, 1, 0, 18, '美港杭州1店');
