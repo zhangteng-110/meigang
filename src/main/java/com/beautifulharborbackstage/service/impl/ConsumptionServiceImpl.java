@@ -11,4 +11,8 @@ import java.util.List;
  */
 public interface ConsumptionServiceImpl {
     List<ConsumptionResultDTO> selectConsumptionList(ConsumptionDTO consumptionDTO);
+
+    Object addConsumption(ConsumptionDTO consumptionDTO);
+
+    List<ConsumptionResultDTO> selectSlotStorefront();
 }

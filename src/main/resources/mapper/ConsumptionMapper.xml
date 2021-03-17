@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.beautifulharborbackstage.dao.mapper.ConsumptionMapper" >
-    <resultMap id="TransactionResultDTO" type="com.beautifulharborbackstage.pojo.dto.ConsumptionResultDTO" >
+    <resultMap id="ConsumptionResultDTO" type="com.beautifulharborbackstage.pojo.dto.ConsumptionResultDTO" >
         <id column="consumptionId" property="consumptionId" jdbcType="BIGINT" />
         <result column="consumptionDate" property="consumptionDate" jdbcType="DATE" />
         <result column="consumptionMoney" property="consumptionMoney" jdbcType="BIGINT" />
@@ -18,7 +18,7 @@
         consumptionId , consumptionDate, consumptionMoney , consumptionStatus ,userId,realName,consumptionStorefront
     </sql>
 
-    <select id="selectConsumptionList" resultType="com.beautifulharborbackstage.pojo.dto.ConsumptionResultDTO" parameterType="com.beautifulharborbackstage.pojo.dto.ConsumptionDTO">
+    <select id="selectConsumptionList" resultMap="ConsumptionResultDTO" parameterType="com.beautifulharborbackstage.pojo.dto.ConsumptionDTO">
         SELECT
         consumptionId , consumptionDate, consumptionMoney , consumptionStatus ,c.userId,t2.realName,c.integral,s.projectName,consumptionStorefront
         FROM consumption c LEFT JOIN (select ud.realName,u.userId from user u join user_details ud on u.userCode = ud.userCode) t2 on c.userid=t2.userId left join service_items s on c.projectId = s.projectId
@@ -41,5 +41,10 @@
             (#{consumptionDate},#{consumptionMoney},#{consumptionStatus},#{userId},#{integral},#{projectId},#{consumptionStorefront})
     </insert>
 
-
+    <select id="selectSlotStorefront" resultMap="ConsumptionResultDTO" >
+        SELECT sum(consumptionMoney) consumptionMoney,consumptionStorefront FROM consumption
+        where 1 = 1 and consumptionStatus = 1
+        group by consumptionStorefront
+        order by consumptionMoney desc
+    </select>
 </mapper>

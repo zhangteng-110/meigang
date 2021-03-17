@@ -1,11 +1,9 @@
 package com.beautifulharborbackstage.controller.consumption;
 
-import com.beautifulharborbackstage.pojo.dto.ConsumptionDTO;
-import com.beautifulharborbackstage.pojo.dto.ConsumptionResultDTO;
-import com.beautifulharborbackstage.pojo.dto.TransactionDTO;
-import com.beautifulharborbackstage.pojo.dto.TransactionResultDTO;
+import com.beautifulharborbackstage.pojo.dto.*;
 import com.beautifulharborbackstage.service.impl.ConsumptionServiceImpl;
 import com.beautifulharborbackstage.service.impl.TransactionServiceImpl;
+import com.beautifulharborbackstage.service.impl.userServiceImpl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
@@ -44,5 +42,22 @@ public class ConsumptionController {
         List<ConsumptionResultDTO> list = consumptionService.selectConsumptionList(consumptionDTO);
         PageInfo<?> info = new PageInfo<>(list);
         return info;
+    }
+
+    @ApiOperation("金额消费")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "ConsumptionDTO",value = "传输po",required = true,paramType = "body")
+    })
+    @PostMapping("/addConsumption")
+    @CrossOrigin
+    public Object addConsumption(@RequestBody ConsumptionDTO consumptionDTO){
+        return consumptionService.addConsumption(consumptionDTO);
+    }
+
+    @ApiOperation("排行榜")
+    @GetMapping("/selectSlotStorefront")
+    @CrossOrigin
+    public Object selectSlotStorefront(){
+        return consumptionService.selectSlotStorefront();
     }
 }

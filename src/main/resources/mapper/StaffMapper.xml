@@ -103,7 +103,7 @@
             salary = #{salary},
         </if>
         <if test="staffPositionId != null">
-            staffPositionId = #{staffPositionId}
+            staffPositionId = #{staffPositionId},
         </if>
         <if test="storefrontId != null">
             storefrontId = #{storefrontId}

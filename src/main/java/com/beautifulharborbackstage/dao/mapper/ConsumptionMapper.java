@@ -17,8 +17,8 @@ import java.util.List;
 @Repository
 public interface ConsumptionMapper {
     void addConsumption(ConsumptionDTO consumptionDTO);
-//
-//    Object selectTransactionMoney(TransactionDTO transactionDTO);
 
     List<ConsumptionResultDTO> selectConsumptionList(ConsumptionDTO consumptionDTO);
+
+    List<ConsumptionResultDTO> selectSlotStorefront();
 }
