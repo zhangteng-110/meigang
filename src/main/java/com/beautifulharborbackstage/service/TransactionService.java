@@ -22,6 +22,7 @@ public class TransactionService implements TransactionServiceImpl {
     private TransactionMapper transactionMapper;
     @Override
     public Object selectMonthTransactionMoney() {
+        TransactionDTO transactionDTO = new TransactionDTO();
         final Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
         cal.add(Calendar.MONTH, -1);
@@ -29,12 +30,17 @@ public class TransactionService implements TransactionServiceImpl {
         cal.setTime(date);
         final int last = cal.getActualMinimum(Calendar.DAY_OF_MONTH);
         cal.set(Calendar.DAY_OF_MONTH, last);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
         Date monthStartDate = cal.getTime();
+        transactionDTO.setStartDate(monthStartDate);
         final int next = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
         cal.set(Calendar.DAY_OF_MONTH, next);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
         Date monthEndDate = cal.getTime();
-        TransactionDTO transactionDTO = new TransactionDTO();
-        transactionDTO.setStartDate(monthStartDate);
         transactionDTO.setEndDate(monthEndDate);
         Object sum = transactionMapper.selectTransactionMoney(transactionDTO);
         if(sum==null){
@@ -61,23 +67,35 @@ public class TransactionService implements TransactionServiceImpl {
         Date endDate = calendar.getTime();
         transactionDTO.setEndDate(endDate);
         Object sum = transactionMapper.selectTransactionMoney(transactionDTO);
+        if(sum==null){
+            return 0;
+        }
         return sum;
     }
 
     @Override
     public Object selectLastYearMoney() {
+        TransactionDTO transactionDTO = new TransactionDTO();
         final Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
         final int last = cal.getActualMinimum(Calendar.DAY_OF_YEAR);
         cal.set(Calendar.DAY_OF_YEAR, last);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
         Date firstDayOfYear = cal.getTime();
+        transactionDTO.setStartDate(firstDayOfYear);
         final int next = cal.getActualMaximum(Calendar.DAY_OF_YEAR);
         cal.set(Calendar.DAY_OF_YEAR, next);
-        TransactionDTO transactionDTO = new TransactionDTO();
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
         Date lastDayOfYear = cal.getTime();
-        transactionDTO.setStartDate(firstDayOfYear);
         transactionDTO.setEndDate(lastDayOfYear);
         Object sum = transactionMapper.selectTransactionMoney(transactionDTO);
+        if(sum==null){
+            return 0;
+        }
         return sum;
     }
 

@@ -21,4 +21,6 @@ public interface ConsumptionMapper {
     List<ConsumptionResultDTO> selectConsumptionList(ConsumptionDTO consumptionDTO);
 
     List<ConsumptionResultDTO> selectSlotStorefront();
+
+    Object selectConsumptionMoney(ConsumptionDTO consumptionDTO);
 }

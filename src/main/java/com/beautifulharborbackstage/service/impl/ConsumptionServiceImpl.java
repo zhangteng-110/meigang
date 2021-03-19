@@ -15,4 +15,12 @@ public interface ConsumptionServiceImpl {
     Object addConsumption(ConsumptionDTO consumptionDTO);
 
     List<ConsumptionResultDTO> selectSlotStorefront();
+
+    Object selectMonthConsumptionMoney();
+
+    Object selectTomorrowConsumptionMoney();
+
+    Object selectLastYearMoney();
+
+    Object selectEveryYearMoney();
 }

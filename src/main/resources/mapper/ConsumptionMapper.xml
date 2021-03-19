@@ -43,8 +43,15 @@
 
     <select id="selectSlotStorefront" resultMap="ConsumptionResultDTO" >
         SELECT sum(consumptionMoney) consumptionMoney,consumptionStorefront FROM consumption
-        where 1 = 1 and consumptionStatus = 1
+        where 1 = 1 and consumptionStatus = 0
         group by consumptionStorefront
         order by consumptionMoney desc
+    </select>
+
+    <select id="selectConsumptionMoney" resultType="java.lang.Object" parameterType="com.beautifulharborbackstage.pojo.dto.ConsumptionDTO">
+        SELECT
+        sum(ConsumptionMoney)
+        FROM consumption
+        where 1 = 1 and consumptionStatus = 0 and consumptionDate between #{startDate} and #{endDate}
     </select>
 </mapper>

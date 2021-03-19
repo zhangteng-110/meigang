@@ -25,28 +25,28 @@ public class TransactionController {
     @Autowired
     private TransactionServiceImpl transactionServiceImpl;
 
-    @ApiOperation("查询上月营业额")
+    @ApiOperation("查询上月充值额")
     @GetMapping("/selectMonthTransactionMoney")
     @CrossOrigin
     public Object selectMonthTransactionMoney(){
         return transactionServiceImpl.selectMonthTransactionMoney();
     }
 
-    @ApiOperation("查询昨日营业额")
+    @ApiOperation("查询昨日充值额")
     @GetMapping("/selectTomorrowTransactionMoney")
     @CrossOrigin
     public Object selectTomorrowTransactionMoney(){
         return transactionServiceImpl.selectTomorrowTransactionMoney();
     }
 
-    @ApiOperation("查询当年营业额")
+    @ApiOperation("查询当年充值额")
     @GetMapping("/selectLastYearMoney")
     @CrossOrigin
     public Object selectLastYearMoney(){
         return transactionServiceImpl.selectLastYearMoney();
     }
 
-    @ApiOperation("查询当年全年营业额")
+    @ApiOperation("查询当年全年充值额")
     @GetMapping("/selectEveryYearMoney")
     @CrossOrigin
     public Object selectEveryYearMoney(){

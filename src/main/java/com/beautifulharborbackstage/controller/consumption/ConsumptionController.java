@@ -2,8 +2,6 @@ package com.beautifulharborbackstage.controller.consumption;
 
 import com.beautifulharborbackstage.pojo.dto.*;
 import com.beautifulharborbackstage.service.impl.ConsumptionServiceImpl;
-import com.beautifulharborbackstage.service.impl.TransactionServiceImpl;
-import com.beautifulharborbackstage.service.impl.userServiceImpl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
@@ -41,6 +39,7 @@ public class ConsumptionController {
         PageHelper.startPage(pageNum,pageSize);
         List<ConsumptionResultDTO> list = consumptionService.selectConsumptionList(consumptionDTO);
         PageInfo<?> info = new PageInfo<>(list);
+        System.err.println(info);
         return info;
     }
 
@@ -59,5 +58,33 @@ public class ConsumptionController {
     @CrossOrigin
     public Object selectSlotStorefront(){
         return consumptionService.selectSlotStorefront();
+    }
+
+    @ApiOperation("查询上月营业额")
+    @GetMapping("/selectMonthConsumptionMoney")
+    @CrossOrigin
+    public Object selectMonthConsumptionMoney(){
+        return consumptionService.selectMonthConsumptionMoney();
+    }
+
+    @ApiOperation("查询昨日营业额")
+    @GetMapping("/selectTomorrowConsumptionMoney")
+    @CrossOrigin
+    public Object selectTomorrowConsumptionMoney(){
+        return consumptionService.selectTomorrowConsumptionMoney();
+    }
+
+    @ApiOperation("查询当年营业额")
+    @GetMapping("/selectLastYearMoney")
+    @CrossOrigin
+    public Object selectLastYearMoney(){
+        return consumptionService.selectLastYearMoney();
+    }
+
+    @ApiOperation("查询当年全年营业额")
+    @GetMapping("/selectEveryYearMoney")
+    @CrossOrigin
+    public Object selectEveryYearMoney(){
+        return consumptionService.selectEveryYearMoney();
     }
 }
