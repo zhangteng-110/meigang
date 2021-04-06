@@ -20,6 +20,8 @@ public interface ConsumptionServiceImpl {
 
     Object selectTomorrowConsumptionMoney();
 
+    Object selectTodayConsumptionMoney();
+
     Object selectLastYearMoney();
 
     Object selectEveryYearMoney();

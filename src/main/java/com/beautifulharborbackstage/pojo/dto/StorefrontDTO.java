@@ -26,4 +26,6 @@ public class StorefrontDTO {
    private int status;
    private int[] storefrontIds;
    private String addressCode;
+   private String longitude;
+   private String latitude;
 }

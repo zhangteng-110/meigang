@@ -38,18 +38,19 @@ public class StaffService implements staffServiceImpl {
                 String username = staffDTO.getAccountNumber();
                 String password = staffDTO.getPassword();
                 int staffId = login.getStaffId();
+                String profilePath = login.getProfilePath();
                 try {
-                    token = JWTUtil.createToken(String.valueOf(staffId), username, password);
+                    token = JWTUtil.createToken(String.valueOf(staffId), username, password,profilePath);
                     RedisUtils.INSTANCE.set(String.valueOf(staffId),token);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                return new staffReturnException(ErrorEnum.E_20011,null,null);
+                return new staffReturnException(ErrorEnum.E_20011,null,null,null);
             }
         }else {
-            return new staffReturnException(ErrorEnum.E_10010,null,null);
+            return new staffReturnException(ErrorEnum.E_10010,null,null,null);
         }
-        return new staffReturnException(ErrorEnum.LOGIN_SUCCESS,token,login.getStaffName());
+        return new staffReturnException(ErrorEnum.LOGIN_SUCCESS,token,login.getStaffName(),login.getProfilePath());
     }
 
     @Override
@@ -60,7 +61,7 @@ public class StaffService implements staffServiceImpl {
     @Override
     public Object deleteStaffById(int staffId) {
         staffMapper.deleteStaffById(staffId);
-        return new staffReturnException(ErrorEnum.DELETE_USER_SUCCESS,null,null);
+        return new staffReturnException(ErrorEnum.DELETE_USER_SUCCESS,null,null,null);
     }
 
     @Override
@@ -69,9 +70,9 @@ public class StaffService implements staffServiceImpl {
         if(staff==null){
             staffDTO.setStartDate(new Date());
             staffMapper.staffRegister(staffDTO);
-            return new staffReturnException(ErrorEnum.REGISTER_SUCCESS,null,null);
+            return new staffReturnException(ErrorEnum.REGISTER_SUCCESS,null,null,null);
         }
-        return new staffReturnException(ErrorEnum.E_10011,null,null);
+        return new staffReturnException(ErrorEnum.E_10011,null,null,null);
     }
 
     @Override
@@ -87,7 +88,7 @@ public class StaffService implements staffServiceImpl {
     @Override
     public Object updateStaffDetail(StaffDTO staffDTO) {
         staffMapper.updateStaffDetail(staffDTO);
-        return new staffReturnException(ErrorEnum.EDIT_USER_SUCCESS,null,null);
+        return new staffReturnException(ErrorEnum.EDIT_USER_SUCCESS,null,null,null);
     }
 
     @Override

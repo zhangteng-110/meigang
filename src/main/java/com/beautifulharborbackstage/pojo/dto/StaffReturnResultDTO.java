@@ -34,4 +34,5 @@ public class StaffReturnResultDTO {
     private int status;
     private int storefrontId;
     private String storefrontName;
+    private String profilePath;
 }

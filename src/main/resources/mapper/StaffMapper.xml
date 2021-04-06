@@ -21,10 +21,11 @@
         <result column="status" property="status" jdbcType="BIGINT" />
         <result column="storefrontId" property="storefrontId" jdbcType="BIGINT" />
         <result column="storefrontName" property="storefrontName" jdbcType="VARCHAR" />
+        <result column="profilePath" property="profilePath" jdbcType="VARCHAR" />
     </resultMap>
 
     <sql id="StaffDTO_List" >
-        staffId , accountNumber, password , staffCode ,staffName,staffSex,phone,startDate,endDate,salary,status
+        staffId , accountNumber, password , staffCode ,staffName,staffSex,phone,startDate,endDate,salary,status,profilePath
     </sql>
 
     <select id="getStaffNumber" resultType="java.lang.Integer">

@@ -16,13 +16,15 @@ public class staffReturnException implements Serializable {
     private String errorMessage;
     private String staffName;
     private String token;
+    private String profilePath;
 
-    public staffReturnException(ErrorEnum errorEnum, String token,String staffName) {
+    public staffReturnException(ErrorEnum errorEnum, String token,String staffName,String profilePath) {
 //        super();
         this.errorEnum = errorEnum;
         this.errorCode = errorEnum.getErrorCode();
         this.errorMessage = errorEnum.getErrorMsg();
         this.token = token;
         this.staffName = staffName;
+        this.profilePath = profilePath;
     }
 }

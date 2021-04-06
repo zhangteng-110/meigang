@@ -39,7 +39,6 @@ public class ConsumptionController {
         PageHelper.startPage(pageNum,pageSize);
         List<ConsumptionResultDTO> list = consumptionService.selectConsumptionList(consumptionDTO);
         PageInfo<?> info = new PageInfo<>(list);
-        System.err.println(info);
         return info;
     }
 
@@ -72,6 +71,13 @@ public class ConsumptionController {
     @CrossOrigin
     public Object selectTomorrowConsumptionMoney(){
         return consumptionService.selectTomorrowConsumptionMoney();
+    }
+
+    @ApiOperation("查询今日营业额")
+    @GetMapping("/selectTodayConsumptionMoney")
+    @CrossOrigin
+    public Object selectTodayConsumptionMoney(){
+        return consumptionService.selectTodayConsumptionMoney();
     }
 
     @ApiOperation("查询当年营业额")

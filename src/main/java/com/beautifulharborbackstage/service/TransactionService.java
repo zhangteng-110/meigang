@@ -74,6 +74,31 @@ public class TransactionService implements TransactionServiceImpl {
     }
 
     @Override
+    public Object selectTodayTransactionMoney() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+//        calendar.add(Calendar.DATE, 0);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);//得到前一个天
+        Date startDate = calendar.getTime();
+        TransactionDTO transactionDTO = new TransactionDTO();
+        transactionDTO.setStartDate(startDate);
+        calendar.setTime(new Date());
+//        calendar.add(Calendar.DATE, 0);
+        calendar.set(Calendar.HOUR_OF_DAY, 24);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);//得到前一个天
+        Date endDate = calendar.getTime();
+        transactionDTO.setEndDate(endDate);
+        Object sum = transactionMapper.selectTransactionMoney(transactionDTO);
+        if(sum==null){
+            return 0;
+        }
+        return sum;
+    }
+
+    @Override
     public Object selectLastYearMoney() {
         TransactionDTO transactionDTO = new TransactionDTO();
         final Calendar cal = Calendar.getInstance();

@@ -15,6 +15,8 @@ public interface TransactionServiceImpl {
 
     Object selectTomorrowTransactionMoney();
 
+    Object selectTodayTransactionMoney();
+
     Object selectLastYearMoney();
 
     Object selectEveryYearMoney();

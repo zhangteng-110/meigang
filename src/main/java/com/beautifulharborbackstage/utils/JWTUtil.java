@@ -36,7 +36,7 @@ public class JWTUtil {
      * @param userCode
      *            登录成功后用户userCode, 参数userCode不可传空
      */
-    public static String createToken(String userCode,String username,String password) throws Exception {
+    public static String createToken(String userCode,String username,String password,String profilePath) throws Exception {
         Date iatDate = new Date();
         // expire time
         Calendar nowTime = Calendar.getInstance();
@@ -56,6 +56,7 @@ public class JWTUtil {
                 .withClaim("userCode", null == userCode ? null : userCode)
                 .withClaim("username", null == username ? null : username)
                 .withClaim("password", null == password ? null : password)
+                .withClaim("profilePath", null == profilePath ? null : profilePath)
                 .withIssuedAt(iatDate) // sign time
                 .withExpiresAt(expiresDate) // expire time
                 .sign(Algorithm.HMAC256(SECRET)); // signature

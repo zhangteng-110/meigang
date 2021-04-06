@@ -33,4 +33,5 @@ public class UserDTO implements Serializable {
     private String cardNumber;
     private int projectId;
     private String consumptionStorefront;
+    private String profilePath;
 }

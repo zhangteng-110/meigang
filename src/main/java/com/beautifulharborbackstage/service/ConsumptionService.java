@@ -143,4 +143,29 @@ public class ConsumptionService implements ConsumptionServiceImpl {
         }
         return date;
     }
+
+    @Override
+    public Object selectTodayConsumptionMoney() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.add(Calendar.DATE, 0);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);//得到前一个天
+        Date startDate = calendar.getTime();
+        ConsumptionDTO consumptionDTO = new ConsumptionDTO();
+        consumptionDTO.setStartDate(startDate);
+        calendar.setTime(new Date());
+        calendar.add(Calendar.DATE, 0);
+        calendar.set(Calendar.HOUR_OF_DAY, 24);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);//得到前一个天
+        Date endDate = calendar.getTime();
+        consumptionDTO.setEndDate(endDate);
+        Object sum = consumptionMapper.selectConsumptionMoney(consumptionDTO);
+        if(sum==null){
+            return 0;
+        }
+        return sum;
+    }
 }

@@ -49,8 +49,9 @@ public class UserService implements userServiceImpl {
                 String username = userDTO.getUsername();
                 String password = userDTO.getPassword();
                 String userCode = login.getUserCode();
+                String profilePath = login.getProfilePath();
                 try {
-                    token = JWTUtil.createToken(userCode, username, password);
+                    token = JWTUtil.createToken(userCode, username, password,profilePath);
                     RedisUtils.INSTANCE.set(userCode,token);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -78,7 +79,7 @@ public class UserService implements userServiceImpl {
             String username = userDTO.getUsername();
             String password = userDTO.getPassword();
             try {
-                token = JWTUtil.createToken(userCode, username, password);
+                token = JWTUtil.createToken(userCode, username, password,null);
                 RedisUtils.INSTANCE.set(userCode,token);
             } catch (Exception e) {
                 e.printStackTrace();

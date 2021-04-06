@@ -26,4 +26,6 @@ public class StorefrontResultDTO {
    private Date endDate;
    private int status;
    private String addressCode;
+   private String longitude;
+   private String latitude;
 }

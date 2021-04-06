@@ -13,10 +13,12 @@
         <result column="startDate" property="startDate" jdbcType="DATE" />
         <result column="endDate" property="endDate" jdbcType="DATE" />
         <result column="addressCode" property="addressCode" jdbcType="VARCHAR" />
+        <result column="longitude" property="longitude" jdbcType="VARCHAR" />
+        <result column="latitude" property="latitude" jdbcType="VARCHAR" />
     </resultMap>
 
     <sql id="Storefront_List" >
-        storefrontId,storefrontName,storefrontAddress,startDate,endDate,status
+        storefrontId,storefrontName,storefrontAddress,startDate,endDate,status, longitude, latitude
     </sql>
 
     <select id="getAllStorefront" resultMap="StorefrontResultDTO">
@@ -56,10 +58,10 @@
     <insert id="addStorefront" parameterType="com.beautifulharborbackstage.pojo.dto.StorefrontDTO" >
         INSERT INTO
             storefront
-            (storefrontName,storefrontAddress,detailedAddress,startDate,endDate,status,addressCode)
+            (storefrontName,storefrontAddress,detailedAddress,startDate,endDate,status,addressCode,longitude,latitude)
         VALUES
-            <if test="storefrontName != null and storefrontName != '' and storefrontAddress != null and storefrontAddress != '' and storefrontAddress != null and storefrontAddress != ''">
-                (#{storefrontName}, #{storefrontAddress}, #{detailedAddress},#{startDate},#{endDate},#{status},#{addressCode})
+            <if test="storefrontName != null and storefrontName != '' and storefrontAddress != null and storefrontAddress != '' and storefrontAddress != null and storefrontAddress != '' and longitude != null and longitude != '' and latitude != null and latitude != ''">
+                (#{storefrontName}, #{storefrontAddress}, #{detailedAddress},#{startDate},#{endDate},#{status},#{addressCode},#{longitude},#{latitude})
             </if>
     </insert>
 
@@ -77,7 +79,13 @@
             detailedAddress = #{detailedAddress},
         </if>
         <if test="addressCode != null and addressCode != ''">
-            addressCode = #{addressCode}
+            addressCode = #{addressCode},
+        </if>
+        <if test="longitude != null and longitude != ''">
+            longitude = #{longitude},
+        </if>
+        <if test="latitude != null and latitude != ''">
+            latitude = #{latitude}
         </if>
         <where>
             <if test="storefrontId != null">
@@ -88,7 +96,7 @@
 
     <select id="getStorefront" resultMap="StorefrontResultDTO">
         SELECT
-        storefrontId,storefrontName
+        storefrontId,storefrontName,storefrontAddress,detailedAddress,longitude,latitude
         FROM storefront
         <where>
             status = 0

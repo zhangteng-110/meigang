@@ -18,7 +18,7 @@ import java.util.Date;
 public class ConsumptionResultDTO {
     private int consumptionId;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-//    @JsonFormat(pattern="yyyy-MM-dd hh:MM:ss",timezone = "Asia/Shanghai")
+//    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "Asia/Shanghai")
     private Date consumptionDate;
     private int userId;
     private int consumptionMoney;

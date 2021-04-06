@@ -39,6 +39,13 @@ public class TransactionController {
         return transactionServiceImpl.selectTomorrowTransactionMoney();
     }
 
+    @ApiOperation("查询当日充值额")
+    @GetMapping("/selectTodayTransactionMoney")
+    @CrossOrigin
+    public Object selectTodayTransactionMoney(){
+        return transactionServiceImpl.selectTodayTransactionMoney();
+    }
+
     @ApiOperation("查询当年充值额")
     @GetMapping("/selectLastYearMoney")
     @CrossOrigin
