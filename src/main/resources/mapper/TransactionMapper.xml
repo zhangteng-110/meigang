@@ -10,6 +10,7 @@
         <result column="transactionMoney" property="transactionMoney" jdbcType="BIGINT" />
         <result column="userId" property="userId" jdbcType="BIGINT" />
         <result column="transactionStatus" property="transactionStatus" jdbcType="TINYINT" />
+        <result column="accountAmount" property="accountAmount" jdbcType="BIGINT" />
         <result column="transactionStorefront" property="transactionStorefront" jdbcType="VARCHAR" />
     </resultMap>
 
@@ -26,7 +27,7 @@
 
     <select id="selectTransactionList" resultType="com.beautifulharborbackstage.pojo.dto.TransactionResultDTO" parameterType="com.beautifulharborbackstage.pojo.dto.TransactionDTO">
         SELECT
-        transactionId , transactionDate, transactionMoney , transactionStatus ,t.userId,t2.realName,transactionStorefront
+        transactionId , transactionDate, transactionMoney , transactionStatus ,t.userId,t2.realName,accountAmount,transactionStorefront
         FROM transaction t LEFT JOIN (select ud.realName,u.userId from user u join user_details ud on u.userCode = ud.userCode) t2 on t.userid=t2.userId
         <where>
             1 = 1
@@ -42,15 +43,15 @@
     <insert id="addTransaction" parameterType="com.beautifulharborbackstage.pojo.dto.TransactionDTO">
         INSERT INTO
             transaction
-            (transactionDate,transactionMoney,transactionStatus,userId,transactionStorefront)
+            (transactionDate,transactionMoney,transactionStatus,userId,transactionStorefront,accountAmount)
         VALUES
-            (#{transactionDate},#{transactionMoney},#{transactionStatus},#{userId},#{transactionStorefront})
+            (#{transactionDate},#{transactionMoney},#{transactionStatus},#{userId},#{transactionStorefront},#{accountAmount})
     </insert>
 
-    <select id="selectSlotStorefront" resultMap="TransactionResultDTO" >
+    <select id="selectSlotStorefront" resultMap="TransactionResultDTO" parameterType="com.beautifulharborbackstage.pojo.po.TransactionPO">
         SELECT
         sum(transactionMoney) transactionMoney,transactionStorefront
         FROM transaction
-        where 1 = 1 and transactionStatus = 1 group by transactionStorefront order by transactionMoney desc
+        where 1 = 1 and transactionStatus = 1 and transactionDate between #{startDate} and #{endDate} group by transactionStorefront order by transactionMoney desc
     </select>
 </mapper>

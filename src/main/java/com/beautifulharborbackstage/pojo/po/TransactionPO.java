@@ -21,5 +21,11 @@ public class TransactionPO {
     private int userId;
     private int transactionMoney;
     private int transactionStatus;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date startDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date endDate;
+    private String realName;
+    private String transactionStorefront;
+    private int accountAmount;
 }

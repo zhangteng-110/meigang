@@ -3,6 +3,7 @@ package com.beautifulharborbackstage.service;
 import com.beautifulharborbackstage.dao.mapper.TransactionMapper;
 import com.beautifulharborbackstage.pojo.dto.TransactionDTO;
 import com.beautifulharborbackstage.pojo.dto.TransactionResultDTO;
+import com.beautifulharborbackstage.pojo.po.TransactionPO;
 import com.beautifulharborbackstage.service.impl.TransactionServiceImpl;
 import com.beautifulharborbackstage.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import java.util.List;
  */
 @Service
 public class TransactionService implements TransactionServiceImpl {
+    private static final Integer time[] = {1,2,3,4,5,6,7,8,9,10,11,12};
     @Autowired
     private TransactionMapper transactionMapper;
     @Override
@@ -126,7 +128,6 @@ public class TransactionService implements TransactionServiceImpl {
 
     @Override
     public Object selectEveryYearMoney() {
-        Integer time[] = {1,2,3,4,5,6,7,8,9,10,11,12};
         Object date[] = new Object[12];
         for (Integer i = 0;i < time.length;i++) {
             Date firstDayOfMonth = DateUtil.getFirstDayOfMonth(time[i]);
@@ -149,7 +150,12 @@ public class TransactionService implements TransactionServiceImpl {
     }
 
     @Override
-    public List<TransactionResultDTO> selectSlotStorefront() {
-        return transactionMapper.selectSlotStorefront();
+    public List<TransactionResultDTO> selectSlotStorefront(int month) {
+        TransactionPO transactionPO = new TransactionPO();
+        Date firstDayOfMonth = DateUtil.getFirstDayOfMonth(month);
+        Date lastDayOfMonth = DateUtil.getLastDayOfMonth(month);
+        transactionPO.setStartDate(firstDayOfMonth);
+        transactionPO.setEndDate(lastDayOfMonth);
+        return transactionMapper.selectSlotStorefront(transactionPO);
     }
 }

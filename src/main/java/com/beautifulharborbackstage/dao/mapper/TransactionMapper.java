@@ -2,6 +2,7 @@ package com.beautifulharborbackstage.dao.mapper;
 
 import com.beautifulharborbackstage.pojo.dto.TransactionDTO;
 import com.beautifulharborbackstage.pojo.dto.TransactionResultDTO;
+import com.beautifulharborbackstage.pojo.po.TransactionPO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -20,5 +21,5 @@ public interface TransactionMapper {
 
     List<TransactionResultDTO> selectTransactionList(TransactionDTO transactionDTO);
 
-    List<TransactionResultDTO> selectSlotStorefront();
+    List<TransactionResultDTO> selectSlotStorefront(TransactionPO transactionPO);
 }

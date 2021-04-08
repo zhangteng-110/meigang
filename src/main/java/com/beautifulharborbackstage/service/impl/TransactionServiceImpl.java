@@ -23,5 +23,5 @@ public interface TransactionServiceImpl {
 
     List<TransactionResultDTO> selectTransactionList(TransactionDTO transactionDTO);
 
-    List<TransactionResultDTO> selectSlotStorefront();
+    List<TransactionResultDTO> selectSlotStorefront(int month);
 }

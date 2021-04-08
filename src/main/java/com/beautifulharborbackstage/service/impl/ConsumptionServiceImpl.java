@@ -14,7 +14,7 @@ public interface ConsumptionServiceImpl {
 
     Object addConsumption(ConsumptionDTO consumptionDTO);
 
-    List<ConsumptionResultDTO> selectSlotStorefront();
+    List<ConsumptionResultDTO> selectSlotStorefront(int month);
 
     Object selectMonthConsumptionMoney();
 

@@ -153,6 +153,7 @@ public class UserService implements userServiceImpl {
         consumptionDTO.setIntegral(userDTO.getMoney());
         consumptionDTO.setProjectId(userDTO.getProjectId());
         consumptionDTO.setConsumptionStorefront(userDTO.getConsumptionStorefront());
+        consumptionDTO.setAccountAmount(userPO.getMoney()-userDTO.getMoney());
         userDTO.setIntegral(userPO.getIntegral()+userDTO.getMoney());
         userDTO.setMoney(userPO.getMoney()-userDTO.getMoney());
         userMapper.consumptionChange(userDTO);
@@ -170,6 +171,7 @@ public class UserService implements userServiceImpl {
         transactionDTO.setTransactionStatus(1);
         transactionDTO.setTransactionMoney(userDTO.getMoney());
         transactionDTO.setTransactionStorefront(userDTO.getConsumptionStorefront());
+        transactionDTO.setAccountAmount(userPO.getMoney()+userDTO.getMoney());
         userDTO.setMoney(userPO.getMoney()+userDTO.getMoney());
         userMapper.consumptionChange(userDTO);
         transactionMapper.addTransaction(transactionDTO);

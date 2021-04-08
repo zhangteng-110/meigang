@@ -4,6 +4,7 @@ import com.beautifulharborbackstage.pojo.dto.ConsumptionDTO;
 import com.beautifulharborbackstage.pojo.dto.ConsumptionResultDTO;
 import com.beautifulharborbackstage.pojo.dto.TransactionDTO;
 import com.beautifulharborbackstage.pojo.dto.TransactionResultDTO;
+import com.beautifulharborbackstage.pojo.po.ConsumptionPO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -20,7 +21,7 @@ public interface ConsumptionMapper {
 
     List<ConsumptionResultDTO> selectConsumptionList(ConsumptionDTO consumptionDTO);
 
-    List<ConsumptionResultDTO> selectSlotStorefront();
+    List<ConsumptionResultDTO> selectSlotStorefront(ConsumptionPO consumptionPO);
 
     Object selectConsumptionMoney(ConsumptionDTO consumptionDTO);
 }

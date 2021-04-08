@@ -41,7 +41,7 @@ public class StaffService implements staffServiceImpl {
                 String profilePath = login.getProfilePath();
                 try {
                     token = JWTUtil.createToken(String.valueOf(staffId), username, password,profilePath);
-                    RedisUtils.INSTANCE.set(String.valueOf(staffId),token);
+                    RedisUtils.INSTANCE.set(String.valueOf(staffId),token,1000*60*60*24);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

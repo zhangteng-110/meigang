@@ -1,4 +1,4 @@
-package com.beautifulharborbackstage.pojo.dto;
+package com.beautifulharborbackstage.pojo.po;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,18 +14,20 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TransactionDTO {
-    private int transactionId;
+public class ConsumptionPO {
+    private int consumptionId;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date transactionDate;
+    private Date consumptionDate;
     private int userId;
-    private int transactionMoney;
-    private int transactionStatus;
+    private int consumptionMoney;
+    private int consumptionStatus;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
+    private int integral;
     private String realName;
-    private String transactionStorefront;
+    private int projectId;
+    private String consumptionStorefront;
     private int accountAmount;
 }

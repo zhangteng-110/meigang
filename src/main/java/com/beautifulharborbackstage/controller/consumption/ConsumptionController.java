@@ -53,10 +53,10 @@ public class ConsumptionController {
     }
 
     @ApiOperation("排行榜")
-    @GetMapping("/selectSlotStorefront")
+    @PostMapping("/selectSlotStorefront")
     @CrossOrigin
-    public Object selectSlotStorefront(){
-        return consumptionService.selectSlotStorefront();
+    public Object selectSlotStorefront(@RequestParam(value = "month", required = false,defaultValue = "1") int month){
+        return consumptionService.selectSlotStorefront(month);
     }
 
     @ApiOperation("查询上月营业额")

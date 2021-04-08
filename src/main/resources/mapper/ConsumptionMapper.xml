@@ -12,6 +12,7 @@
         <result column="integral" property="integral" jdbcType="BIGINT" />
         <result column="consumptionStatus" property="consumptionStatus" jdbcType="TINYINT" />
         <result column="consumptionStorefront" property="consumptionStorefront" jdbcType="VARCHAR" />
+        <result column="accountAmount" property="accountAmount" jdbcType="BIGINT" />
     </resultMap>
 
     <sql id="Transaction_List" >
@@ -20,7 +21,7 @@
 
     <select id="selectConsumptionList" resultType="com.beautifulharborbackstage.pojo.dto.ConsumptionResultDTO" parameterType="com.beautifulharborbackstage.pojo.dto.ConsumptionDTO">
         SELECT
-        consumptionId , consumptionDate, consumptionMoney , consumptionStatus ,c.userId,t2.realName,c.integral,s.projectName,consumptionStorefront
+        consumptionId , consumptionDate, consumptionMoney , consumptionStatus ,c.userId,t2.realName,c.integral,s.projectName,consumptionStorefront,accountAmount
         FROM consumption c LEFT JOIN (select ud.realName,u.userId from user u join user_details ud on u.userCode = ud.userCode) t2 on c.userid=t2.userId left join service_items s on c.projectId = s.projectId
         <where>
             1 = 1
@@ -36,14 +37,14 @@
     <insert id="addConsumption" parameterType="com.beautifulharborbackstage.pojo.dto.ConsumptionDTO">
         INSERT INTO
             consumption
-            (consumptionDate,consumptionMoney,consumptionStatus,userId,integral,projectId,consumptionStorefront)
+            (consumptionDate,consumptionMoney,consumptionStatus,userId,integral,projectId,consumptionStorefront,accountAmount)
         VALUES
-            (#{consumptionDate},#{consumptionMoney},#{consumptionStatus},#{userId},#{integral},#{projectId},#{consumptionStorefront})
+            (#{consumptionDate},#{consumptionMoney},#{consumptionStatus},#{userId},#{integral},#{projectId},#{consumptionStorefront},#{accountAmount})
     </insert>
 
-    <select id="selectSlotStorefront" resultMap="ConsumptionResultDTO" >
+    <select id="selectSlotStorefront" resultMap="ConsumptionResultDTO" parameterType="com.beautifulharborbackstage.pojo.po.ConsumptionPO">
         SELECT sum(consumptionMoney) consumptionMoney,consumptionStorefront FROM consumption
-        where 1 = 1 and consumptionStatus = 0
+        where 1 = 1 and consumptionStatus = 0 and consumptionDate between #{startDate} and #{endDate}
         group by consumptionStorefront
         order by consumptionMoney desc
     </select>

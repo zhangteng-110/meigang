@@ -3,6 +3,7 @@ package com.beautifulharborbackstage.service;
 import com.beautifulharborbackstage.dao.mapper.ConsumptionMapper;
 import com.beautifulharborbackstage.pojo.dto.ConsumptionDTO;
 import com.beautifulharborbackstage.pojo.dto.ConsumptionResultDTO;
+import com.beautifulharborbackstage.pojo.po.ConsumptionPO;
 import com.beautifulharborbackstage.pojo.po.ErrorEnum;
 import com.beautifulharborbackstage.pojo.po.exception.ReturnException;
 import com.beautifulharborbackstage.service.impl.ConsumptionServiceImpl;
@@ -42,8 +43,13 @@ public class ConsumptionService implements ConsumptionServiceImpl {
     }
 
     @Override
-    public List<ConsumptionResultDTO> selectSlotStorefront() {
-        return consumptionMapper.selectSlotStorefront();
+    public List<ConsumptionResultDTO> selectSlotStorefront(int month) {
+        ConsumptionPO consumptionPO = new ConsumptionPO();
+        Date firstDayOfMonth = DateUtil.getFirstDayOfMonth(month);
+        Date lastDayOfMonth = DateUtil.getLastDayOfMonth(month);
+        consumptionPO.setStartDate(firstDayOfMonth);
+        consumptionPO.setEndDate(lastDayOfMonth);
+        return consumptionMapper.selectSlotStorefront(consumptionPO);
     }
 
     @Override

@@ -29,4 +29,5 @@ public class ConsumptionDTO {
     private String realName;
     private int projectId;
     private String consumptionStorefront;
+    private int accountAmount;
 }

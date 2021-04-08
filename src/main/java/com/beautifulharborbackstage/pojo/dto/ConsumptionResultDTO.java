@@ -31,4 +31,5 @@ public class ConsumptionResultDTO {
     private String realName;
     private String projectName;
     private String consumptionStorefront;
+    private int accountAmount;
 }
