@@ -33,8 +33,8 @@ public class StaffService implements staffServiceImpl {
         StaffReturnResultDTO login = staffMapper.login(staffDTO);
         String token = null;
         if(login!=null){
-            String userid = RedisUtils.INSTANCE.get(String.valueOf(login.getStaffId()));
-            if(userid == null){
+            token = RedisUtils.INSTANCE.get(String.valueOf(login.getStaffId()));
+            if(token == null){
                 String username = staffDTO.getAccountNumber();
                 String password = staffDTO.getPassword();
                 int staffId = login.getStaffId();

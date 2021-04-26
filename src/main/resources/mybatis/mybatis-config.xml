@@ -50,6 +50,7 @@
         <mapper resource="mapper/RoleMapper.xml"/>
         <mapper resource="mapper/ServiceItemsMapper.xml"/>
         <mapper resource="mapper/StorefrontMapper.xml"/>
+        <mapper resource="mapper/NoticeMapper.xml"/>
     </mappers>
 
 </configuration>
