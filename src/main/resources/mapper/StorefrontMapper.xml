@@ -15,6 +15,7 @@
         <result column="addressCode" property="addressCode" jdbcType="VARCHAR" />
         <result column="longitude" property="longitude" jdbcType="VARCHAR" />
         <result column="latitude" property="latitude" jdbcType="VARCHAR" />
+        <result column="score" property="score" javaType="Float" />
     </resultMap>
 
     <sql id="Storefront_List" >
@@ -96,7 +97,7 @@
 
     <select id="getStorefront" resultMap="StorefrontResultDTO">
         SELECT
-        storefrontId,storefrontName,storefrontAddress,detailedAddress,longitude,latitude
+        storefrontId,storefrontName,storefrontAddress,detailedAddress,longitude,latitude,score
         FROM storefront
         <where>
             status = 0

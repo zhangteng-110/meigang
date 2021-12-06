@@ -44,19 +44,18 @@ public class UserService implements userServiceImpl {
         UserDTO login = userMapper.login(userDTO);
         String token = null;
         if(login!=null){
-            String userid = RedisUtils.INSTANCE.get(login.getUserCode());
-            if(userid != null && login != null){
+            token = RedisUtils.INSTANCE.get(login.getUserCode());
+            if(token == null){
                 String username = userDTO.getUsername();
                 String password = userDTO.getPassword();
                 String userCode = login.getUserCode();
                 String profilePath = login.getProfilePath();
                 try {
                     token = JWTUtil.createToken(userCode, username, password,profilePath);
-                    RedisUtils.INSTANCE.set(userCode,token);
+                    RedisUtils.INSTANCE.set(userCode,token,1000*60*60*24);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }else{
                 return new ReturnException(ErrorEnum.E_20011,null);
             }
         }else {

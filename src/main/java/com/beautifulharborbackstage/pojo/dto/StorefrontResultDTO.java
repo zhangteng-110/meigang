@@ -28,4 +28,5 @@ public class StorefrontResultDTO {
    private String addressCode;
    private String longitude;
    private String latitude;
+   private float score;
 }
