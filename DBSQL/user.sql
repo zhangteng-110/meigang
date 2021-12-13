@@ -16,3 +16,9 @@ INSERT INTO `user`(`userId`, `username`, `password`, `userCode`) VALUES (36, NUL
 INSERT INTO `user`(`userId`, `username`, `password`, `userCode`) VALUES (37, NULL, NULL, '160231995112169134');
 INSERT INTO `user`(`userId`, `username`, `password`, `userCode`) VALUES (38, NULL, NULL, '180231986112137457');
 INSERT INTO `user`(`userId`, `username`, `password`, `userCode`) VALUES (39, NULL, NULL, '189232000112137156');
+INSERT INTO `user`(`userId`, `username`, `password`, `userCode`) VALUES (40, NULL, NULL, '145023196904053813');
+INSERT INTO `user`(`userId`, `username`, `password`, `userCode`) VALUES (41, NULL, NULL, '146023197906233815');
+INSERT INTO `user`(`userId`, `username`, `password`, `userCode`) VALUES (42, NULL, NULL, '147023190107213812');
+INSERT INTO `user`(`userId`, `username`, `password`, `userCode`) VALUES (43, NULL, NULL, '145723199106063815');
+INSERT INTO `user`(`userId`, `username`, `password`, `userCode`) VALUES (44, NULL, NULL, '148323198004113912');
+INSERT INTO `user`(`userId`, `username`, `password`, `userCode`) VALUES (45, NULL, NULL, '148023197011052914');

@@ -1,4 +1,4 @@
-INSERT INTO `role`(`roleId`, `roleName`) VALUES (1, '董事');
+INSERT INTO `role`(`roleId`, `roleName`) VALUES (1, '管理员');
 INSERT INTO `role`(`roleId`, `roleName`) VALUES (2, '股东');
 INSERT INTO `role`(`roleId`, `roleName`) VALUES (3, '店长');
 INSERT INTO `role`(`roleId`, `roleName`) VALUES (4, '经理');
